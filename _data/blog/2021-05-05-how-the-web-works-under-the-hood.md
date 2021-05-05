@@ -6,6 +6,7 @@ title: How the Web Works Under the Hood?
 metaDescription: >-
   Ever wondered how the website is rendered on your laptop's screen? Learn how
   the web works under the hood when you type off a url in your web browser.
+thumbnail: /assets/Web-Development-for-Dummies.png
 ---
   
 
