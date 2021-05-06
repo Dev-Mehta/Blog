@@ -33,14 +33,21 @@ module.exports = {
         }],
       },
     },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        // The property ID; the tracking code won't be generated without it. replace with yours
-        trackingId: "G-32B2WMKLZV",
-        head: true,
-      }
-    },
+	{
+		resolve: `gatsby-plugin-google-gtag`,
+		options: {
+			trackingIds: [
+				"G-32B2WMKLZV", // Google Analytics / GA
+			],
+			  // This object is used for configuration specific to this plugin
+			pluginConfig: {
+				// Puts tracking script in the head instead of the body
+				head: false,
+				// Setting this parameter is also optional
+				respectDNT: true,
+			},
+		}
+	},
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

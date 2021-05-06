@@ -22,6 +22,7 @@ const IndexPage = ({
         <title>{site.siteMetadata.title}</title>
         <meta name="description" content={site.siteMetadata.description} />
 		<meta name="google-site-verification" content="rTvXexlG0sbNMyCg3orpiy18EujIBaV8Y9LCG1zRmlU" />
+		<script async src="https://www.googletagmanager.com/gtag/js?id=TRACKING_ID"></script>
 	  </Helmet>
       <HeroHeader/>
       <h2>Blog Posts &darr;</h2>
