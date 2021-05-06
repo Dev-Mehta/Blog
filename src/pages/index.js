@@ -21,7 +21,8 @@ const IndexPage = ({
       <Helmet>
         <title>{site.siteMetadata.title}</title>
         <meta name="description" content={site.siteMetadata.description} />
-      </Helmet>
+		<meta name="google-site-verification" content="rTvXexlG0sbNMyCg3orpiy18EujIBaV8Y9LCG1zRmlU" />
+	  </Helmet>
       <HeroHeader/>
       <h2>Blog Posts &darr;</h2>
       <div className="grids">
