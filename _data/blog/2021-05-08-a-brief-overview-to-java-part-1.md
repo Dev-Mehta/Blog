@@ -9,6 +9,8 @@ metaDescription: >
   general-purpose programming language. It is a widely used robust technology.
 thumbnail: /assets/java-tutorial.png
 ---
+This core java article is designed for students and working professionals. Java is an object-oriented, class-based, concurrent, secured and general-purpose programming language. It is a widely used robust technology. You can download the notes from [here](https://simplifiedweb.netlify.app/assets/Java%20Tutorial.pdf)
+
 What is Java?
 -------------
 
