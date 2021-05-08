@@ -7,6 +7,7 @@ metaDescription: >
   This core java article is designed for students and working professionals.
   Java is an object-oriented, class-based, concurrent, secured and
   general-purpose programming language. It is a widely used robust technology.
+thumbnail: /assets/java-tutorial.png
 ---
 What is Java?
 -------------
