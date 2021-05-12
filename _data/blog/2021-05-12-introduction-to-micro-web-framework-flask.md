@@ -9,7 +9,7 @@ metaDescription: >-
   Development for a Data Scientist is…
 thumbnail: /assets/Add a heading.png
 ---
-Understand the concept of micro web framework Flask in Python. 
+Understand the concept of micro web framework Flask in Python. You can also [download the notes](https://res.cloudinary.com/devmehta/image/upload/v1620837180/Introduction_to_Micro_Web_Framework_Flask_nzjchv.pdf) in pdf format.
 
 ## Introduction
 Web Development in today’s time is very important for any business. Many big companies and startups rely on a great website to attract many customers. 
