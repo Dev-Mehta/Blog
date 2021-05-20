@@ -8,80 +8,68 @@ metaDescription: >-
   the web works under the hood when you type off a url in your web browser.
 thumbnail: /assets/Web-Development-for-Dummies.png
 ---
-  
+# How the Web Works Under the Hood?
+In this article, you will get to know what happens behind the scenes when you type a URL in your browser and how it gets rendered to your browser Have you ever wondered about how the website gets rendered in your browser's screen as soon as you open its link? If yes, well this is the right article for you.
+## What Will You Learn in this Article?
+ - What happens behind the scenes when you visit a website?
+ - What do we mean by Full-Stack Web Development?
+ - Who is a full-stack developer?
+ - Bonus: Roadpath to become a FullStack Web Developer + Resources
+## What happens behind the scenes when you visit a website?
+1. You start by typing the URL into your browser.
+2. Your browser client then sends a request as a packet, which includes the IP address of the website you want
 
-In this article, you will get to know about how the web works. You may be wondering about how the website gets rendered in your browser's screen as soon as you open its link.
+![](https://res.cloudinary.com/devmehta/image/upload/v1621150936/Screenshot_2021-05-16_How_the_Web_Works_Under_the_Hood_-_Google_Docs_uiaazd.png)
 
-What Will You Learn?
---------------------
+3. This request will go to your Internet Service Provider that will re-route it to the appropriate server location using the IP address as the guide.
 
-*   How the web works
-*   What do we mean by Full-Stack Web Development
-*   Why we choose Django for our course
+![](https://res.cloudinary.com/devmehta/image/upload/v1621151014/Screenshot_2021-05-16_How_the_Web_Works_Under_the_Hood_-_Google_Docs_1_rlaaxu.png)
 
-What Happens When You Visit a Website?
---------------------------------------
+4. Once the server gets your request it will try to process it. If the request is valid and the server sends an HTTP Response to the client. So what you basically get is a string from the server which is then rendered by your browser. But sending the whole webpage as a single packet is too big for the content length. So the webpage is split into chunks called packets.
 
-1.  You **start by typing the URL** into your browser.
-2.  Your **computer then sends this request as a packet**, which includes the IP address of the website you want.
-3.  It sends this request through wires, or a **satellite which eventually links to wires using your ISP**.
-4.  Your **ISP will then re-route the request to the appropriate server location**, using the IP address as the guide.
-5.  Once your request reaches the **server**, it can **send back the website you asked for.**
-6.  However a full website with content is too big to send as a single packet of data. To solve this, the **server sends back the website split up into many packets**
-7.  The **packets come with instructions on how to get back to you and reassemble once they reach you**.The packets don’t care how they get to you, just the final location.
-8.  **Once the packets reach you, they are reassembled to show the page**.
-9.  All of this moves at close to the speed of light, so it happens very fast.
-10.  This is a higher-level explanation, but for our purposes, it is all we need to know for now.
-11.  **Let’s continue by discussing what the term “Full-Stack” means.**
+![](https://res.cloudinary.com/devmehta/image/upload/v1621151066/Screenshot_2021-05-16_How_the_Web_Works_Under_the_Hood_-_Google_Docs_2_encoeb.png)
 
-What Do You Mean By Full-Stack Web Development?
------------------------------------------------
+5. Once all the packets reach you, they get reassembled to an HTML webpage. This whole process happens at the speed of light so you don’t even need to worry about how the data will be sent, processed, received back and rendered as a whole page🤯. Amazing isn’t it?
 
-*   There are two main components of a website 
-    *   **Front-End Web Development** - The Front-End is what you see as a user on the website.
-    *   **Back-End Web Development** - The Back-End is the technology used to actually decide what to show you on the Front-End.
-*   The **Front-End Development** revolves around three technologies
-    *   **HTML**
-    *   **CSS**
-    *   **JavaScript**
+## What do we mean by Full-Stack Web Development?
+The word full-stack refers to the collection of a series of technologies needed to complete a project and the developer who knows all the technologies likewise is considered a full-stack developer.
+In simpler words, A full-stack developer is a developer who knows how to work on the frontend, backend, deployment and maintenance of a project. 
+### What is front end development?
+The part of the application where users can see and engage with is called the front-end. The developer who develops this part of the application is called a front-end developer.
+### What is backend development?
+The part of the application where users can’t see and engage with is called the backend. Here all the business logic for the project is applied. The developer who develops this part of the application is called a front-end developer.
+This usually includes:
+ - Logical process
+ - Database related processes
+ - User Validation
+ - Server Configuration
+ - Abstract the business layer from the view layer
+ - Bonus: Roadpath to become a FullStack Web Developer + Resources
+## What are the skills required to be a full-stack developer?
+A Full Stack Web Developer must be able to create and maintain the front-end and back-end of web applications and must be proficient with the various languages that are used to develop a web application.
+If you’re determined to pursue a career as a full-stack developer, these are the things you need to learn. (Take note that because many people have different opinions about full-stack developers, you might need more or less than these to snag your dream job.)
+As [Larsen Reever pens down](https://dev.to/blog/how-to-become-a-full-stack-developer-in-2019-roadmap-2e7h) and I quote here, this is the 18 point checklist of things you need to know to develop a full-stack web application.
+1. Learn how to Authenticate
+2. Build Roles, Permissions and Access Control
+3. Learn how to CRUD
+4. Learn how to REST
+5. Learn to work with forms and state
+6. Build an API
+7. Build Notifications for Email, SMS and other real-time Webhooks
+8. Build Subscriptions and Plans
+9. Learn billing integration with payment gateways
+10. Handle File uploads
+11. Don’t be afraid to work with third-party APIs, Frameworks and Packages
+12. Work with, build and extend community-packages
+13. Create an admin interface
+14. Manage Caching
+15. Think in terms of components
+16. Work with a modern version control system like git for your source code
+17. Work with the command line
+18. Ask good questions on Stack Overflow
 
-**You will hear about Front-End technologies such as jQuery and Bootstrap, but those are all built using the previous three.**
+Here is a graphic to cover the whole roadmap path to becoming a full-stack developer within a single image.
 
-What are the Technologies Used For Front-End Web Development?
--------------------------------------------------------------
+![](https://res.cloudinary.com/practicaldev/image/fetch/s--4RIwaNsa--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://thepracticaldev.s3.amazonaws.com/i/am1x3w193daubmywq13d.jpg)
 
-*   ### HTML
-    
-    *   **HTML** stands for **HyperText Markup Language**. Every website will have HTML, it defines the structure of a page.
-    *   You can view by right-clicking and selecting **View Page Source.**
-*   ### **CSS**
-    
-    *   CSS - Cascading Style Sheets
-    *   CSS is the actual styling of the website.
-    *   Colors, fonts, borders, etc are all defined by CSS.
-    *   CSS is not mandatory, but almost all sites have it.
-*   ### JavaScript
-    
-    *   Javascript allows you to add interactivity to the website, including programming logic.
-    *   Any site with interactivity uses Javascript in some way, otherwise, the site is “static”.
-
-What are the Technologies used for Back-End Web Development? 
--------------------------------------------------------------
-
-*   ### The Back-End Web Development of a site has three components
-    
-    *   **The Language**
-    *   **The Framework**
-    *   **The Database**
-        *   Technologies such as Php, Node.js, Ruby/Rails, Java, Python, etc. are all viable options for a website.
-        *   You will use the following for your backend
-            *   Python as the Language - Python is a great language to learn, it’s simple, powerful, and has many libraries.
-            *   Django as the Framework - Django is the most popular framework for Python, it’s fast, secure, and scalable.
-            *   SQLite as the Database - SQLite comes with Django and Python making it an easy choice.
-
-Full Stack Web Development
---------------------------
-
-By now you know about front-end web developer and back-end web developer,  a **Full-stack Web Developer is a developer which handles the tasks of both front-end and back-end web developers**. They have **knowledge of both front-end and back-end web technologies** and hence are considered **the most skilled web developers** in the industry.
-
-**In the next tutorial, you will learn about HTML to start your journey as a Full-Stack Developer. Stay Tuned...**
+Here is an awesome resource link I found on the internet which can help you become a Full-Stack Web Developer. - [100+ resources to learn Full Stack Web Development for free.](https://github.com/bmorelli25/Become-A-Full-Stack-Web-Developer/blob/master/README.md)
