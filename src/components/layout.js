@@ -1,7 +1,9 @@
-import React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
-import Navigation from "../components/navigation"
-import 'prismjs/themes/prism-okaidia.css';
+import React from "react";
+import { Link, useStaticQuery, graphql } from "gatsby";
+import Navigation from "../components/navigation";
+import "prismjs/themes/prism-okaidia.css";
+import { ThemeConsumer } from "styled-components";
+import themeChanger from "./themeChanger";
 
 export default ({ children }) => {
   const data = useStaticQuery(
@@ -14,7 +16,7 @@ export default ({ children }) => {
         }
       }
     `
-  )
+  );
   return (
     <div className="site-wrapper">
       <header className="site-header">
@@ -25,8 +27,14 @@ export default ({ children }) => {
       </header>
       {children}
       <footer className="site-footer">
-        <p>&copy; {new Date().getFullYear()} SimplifiedWeb &bull; Crafted with <span role="img" aria-label="tea">☕</span> by <a href="https://github.com/Dev-Mehta/">Dev Mehta</a></p>
+        <p>
+          &copy; {new Date().getFullYear()} SimplifiedWeb &bull; Crafted with{" "}
+          <span role="img" aria-label="tea">
+            ☕
+          </span>{" "}
+          by <a href="https://github.com/Dev-Mehta/">Dev Mehta</a>
+        </p>
       </footer>
     </div>
-  )
-}
+  );
+};
