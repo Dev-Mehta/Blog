@@ -21,9 +21,10 @@ const IndexPage = ({
       <Helmet>
         <title>{site.siteMetadata.title}</title>
         <meta name="description" content={site.siteMetadata.description} />
-		<meta name="google-site-verification" content="rTvXexlG0sbNMyCg3orpiy18EujIBaV8Y9LCG1zRmlU" />
-		<script async src="https://www.googletagmanager.com/gtag/js?id=TRACKING_ID"></script>
-	  </Helmet>
+	<meta name="google-site-verification" content="rTvXexlG0sbNMyCg3orpiy18EujIBaV8Y9LCG1zRmlU" />
+	<script async src="https://www.googletagmanager.com/gtag/js?id=TRACKING_ID" />
+	<script data-ad-client="ca-pub-1123574059568760" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
+      </Helmet>
       <HeroHeader/>
       <h2>Blog Posts &darr;</h2>
       <div className="grids">
