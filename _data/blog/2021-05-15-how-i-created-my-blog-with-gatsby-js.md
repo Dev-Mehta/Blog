@@ -9,7 +9,7 @@ metaDescription: >-
   post. Especially when you are a freelancer like me, you‘ll find that a
   successful blog can bring many clients your way instead of having to go find
   them by yourself.
-thumbnail: /assets/Frame 1.png
+thumbnail: /assets/Frame 1 gatsby.png
 ---
 # How I Created My Blog with Gatsby.js
 Writing articles can help you become a better developer and communicator because there is a huge work of researching, coding, learning, behind a blog post. Especially when you are a freelancer or consultant like me, you‘ll find that a successful blog can bring many clients your way instead of having to go find them by yourself.
