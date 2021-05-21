@@ -1,14 +1,24 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Helmet from 'react-helmet';
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
-import Disqus from 'gatsby-plugin-disqus'
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
   const { site, markdownRemark } = data // data.markdownRemark holds your post data
   const { siteMetadata } = site
   const { frontmatter, html } = markdownRemark
+  useEffect(()=>{
+	const script = document.createElement("script");
+    script.innerHTML = `(function() { // DON'T EDIT BELOW THIS LINE
+		var d = document, s = d.createElement('script');
+		s.src = 'https://simplifiedweb.disqus.com/embed.js';
+		s.setAttribute('data-timestamp', +new Date());
+		(d.head || d.body).appendChild(s);
+		})();`;
+    script.async = true;
+    document.body.appendChild(script);
+  });
   return (
     <Layout>
       <Helmet>
@@ -36,11 +46,12 @@ export default function Template({
           />
         </article>
       </div>
-	  <Disqus
-        config={{url: frontmatter.path,identifier: frontmatter.path,title: frontmatter.title}}/>
+	  <div id="disqus_thread"></div>
     </Layout>
   )
 }
+
+
 
 export const pageQuery = graphql`
   query($path: String!) {
