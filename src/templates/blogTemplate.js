@@ -2,7 +2,7 @@ import React from "react"
 import Helmet from 'react-helmet';
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
-
+import Disqus from 'gatsby-plugin-disqus'
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
@@ -36,6 +36,8 @@ export default function Template({
           />
         </article>
       </div>
+	  <Disqus
+        config={{url: frontmatter.path,identifier: frontmatter.path,title: frontmatter.title}}/>
     </Layout>
   )
 }
