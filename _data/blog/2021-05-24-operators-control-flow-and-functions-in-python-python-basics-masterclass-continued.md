@@ -13,8 +13,11 @@ metaDescription: >-
   contains two parts operand and operator. The variables that will be changed
   after the operation are called operands and the symbol used is called
   operator.
+thumbnail: >-
+  /assets/Operators, Control Flow, and Functions in Python - Python Basics
+  Masterclass Continued.png
 ---
-In the last article, we studied what is python, how to install it on your computer, and basic data types in python(numeric, strings, lists, tuples, dictionaries). In this article, we will study operators in python, control flow statements and functions in python.
+In the [last article](https://simplifiedweb.netlify.app/introduction-to-python-a-masterclass-for-beginners), we studied what is python, how to install it on your computer, and basic data types in python(numeric, strings, lists, tuples, dictionaries). In this article, we will study operators in python, control flow statements and functions in python.
 
 ## Operators in Python
 
@@ -30,7 +33,7 @@ Here a, b, and c are operands as they are the elements that will be operated, an
 
 Now let’s understand the types of operators in python
 
-### Arithmetic Operators {#h.k75p18fcfo3g .c27 .c21 .c38}
+### Arithmetic Operators
 
 | Operator | Description(Here assume a = 5, b = 2|
 |---|---|
@@ -99,6 +102,7 @@ print(a and b, a or b, not a)
 ```
 
 ### Membership Operators
+
 These are used to test whether a particular variable or value exists in
 either a list, dictionary, tuple, set and so on.
 
@@ -113,6 +117,7 @@ if 5 not in a:
     print('No!') 
 # Output: No!
 ```
+
 ### Identity Operator
 These operators are used to check whether the values, variables
 are identical or not. As simple as that.
@@ -129,6 +134,7 @@ if a is not b:
     print('Not Similar!')
 # Output: Similar
 ```
+
 ## Flow Control in Python
 
 There are 3 types of flow control statement/blocks in python.
@@ -310,7 +316,7 @@ get_last_name(fname = "Tanmay", lname = "Trivedi")
 # Output: Trivedi
 ```
 
-### Function Return Values {#h.9qnogtda8klf .c27 .c38}
+### Function Return Values
 
 To let a function return a value, use the return keyword:
 
@@ -327,8 +333,8 @@ Gifs by
 [tenor](https://media1.tenor.com/images/ad4d7a7fdfd285c305dd5fb4e5593c5b/tenor.gif)
 
 In this article, we learned about what are operators, control flow and
-functions in python. If you want to learn what are the basics of python,
-you can read this previous article. In the next article, we will learn
+functions in python. If you want to learn what are the [basics of python](https://simplifiedweb.netlify.app/introduction-to-python-a-masterclass-for-beginners),
+you can read this [previous article](https://simplifiedweb.netlify.app/introduction-to-python-a-masterclass-for-beginners). In the next article, we will learn
 the name scoping in python and file handling in python. Until then,
 happy coding or you can
 read [my
