@@ -193,8 +193,8 @@ Output : [‘akash@rail.com’,’ankita@rail.com’]
 
 ![](https://media1.tenor.com/images/5c36b5497629f905d0c011d16f01c0ff/tenor.gif?itemid=10312546)
 
-That’s all about this post. Don’t worry, we would learn Operators in
-Python, Flow control and functions in python in the next post. Until
+That’s all about this post. Don’t worry, we have studied [Operators in
+Python, Flow control and functions in python](https://simplifiedweb.netlify.app/operators-control-flow-and-functions-in-python-python-basics-masterclass-continued) in the next post. Until
 then, happy coding or you can read [my other
 articles.](https://simplifiedweb.netlify.app/) 
 
