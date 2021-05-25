@@ -28,6 +28,8 @@ body.light {
   --contact-bg: #f7f8fe;
   --contact-bdr: #d3d6e7;
   --input-bg: var(--background);
+  --mobile-nav-bg: #000;
+  --mobile-nav-fg: #fff;
 }
 body.dark {
   --primary-color: #9984d5;
@@ -50,6 +52,8 @@ body.dark {
   --contact-bg: var(--card-shadow);
   --contact-bdr: var(--card-bg);
   --input-bg: var(--card-bg);
+  --mobile-nav-bg: #fff;
+  --mobile-nav-fg: var(--btn-hover-text-color);
 }
 /* System Fonts as used by Medium and WordPress */
 body {
@@ -124,8 +128,10 @@ a {
 .site-title a {
   color: var(--primary-color);
   text-decoration: none;
-  font-weight: 900;
-  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.4rem;
+  font-family: 'Inter';
+  letter-spacing: -0.8px;
 }
 .hero-header {
   padding: 0 0 64px;
