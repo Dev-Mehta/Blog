@@ -9,7 +9,6 @@ metaDescription: >-
 thumbnail: /assets/Web-Development-for-Dummies.png
 ---
 # How the Web Works Under the Hood?
-<div style="width:100%;height:0;padding-bottom:100%;position:relative;"><iframe src="https://giphy.com/embed/oBQZIgNobc7ewVWvCd" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/wow-doge-fractal-oBQZIgNobc7ewVWvCd">via GIPHY</a></p>
 In this article, you will get to know what happens behind the scenes when you type a URL in your browser and how it gets rendered to your browser Have you ever wondered about how the website gets rendered in your browser's screen as soon as you open its link? If yes, well this is the right article for you.
 ## What Will You Learn in this Article?
  - What happens behind the scenes when you visit a website?
