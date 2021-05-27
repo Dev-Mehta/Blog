@@ -18,7 +18,7 @@ If you aren’t sure what a hash is, a hash is an output of hashing algorithms l
 
 You’ll also need an HTTP Client, like Postman or cURL. I personally prefer [httpie](https://httpie.io/) but any client would work.
 
-You can also find the final source code for this project on my GitHub profile.
+You can also find the final source code for this project on my [GitHub profile](https://github.com/Dev-Mehta/Blockchain).
 
 You can install the required packages with this one-liner command
 
@@ -28,7 +28,7 @@ pip install Flask==0.12.2 requests==2.18.4
 
 ## Step 1: Creating a Blockchain 
 
-Open your favourite code editor or IDE, personally I ❤️ VS Code. Create a file named blockchain.py. We’ll only use a single file, but if you get lost, you can always refer to the source code.
+Open your favourite code editor or IDE, personally I ❤️ VS Code. Create a file named blockchain.py. We’ll only use a single file, but if you get lost, you can always refer to the [source code](https://github.com/Dev-Mehta/Blockchain).
 
 ### Representing a Blockchain
 
