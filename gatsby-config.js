@@ -18,36 +18,38 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: [{
-          resolve: `gatsby-remark-prismjs`,
-          options: {
-            classPrefix: "language-",
-            inlineCodeMarker: null,
-            aliases: {},
-            showLineNumbers: false,
-            noInlineHighlight: false,
+        plugins: [
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: "language-",
+              inlineCodeMarker: null,
+              aliases: {},
+              showLineNumbers: false,
+              noInlineHighlight: false,
+            },
           },
-        },
-        {
-          resolve: 'gatsby-remark-emojis',
-        }],
+          {
+            resolve: "gatsby-remark-emojis",
+          },
+        ],
       },
     },
-	{
-		resolve: `gatsby-plugin-google-gtag`,
-		options: {
-			trackingIds: [
-				"G-32B2WMKLZV", // Google Analytics / GA
-			],
-			  // This object is used for configuration specific to this plugin
-			pluginConfig: {
-				// Puts tracking script in the head instead of the body
-				head: false,
-				// Setting this parameter is also optional
-				respectDNT: true,
-			},
-		}
-	},
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          "G-32B2WMKLZV", // Google Analytics / GA
+        ],
+        // This object is used for configuration specific to this plugin
+        pluginConfig: {
+          // Puts tracking script in the head instead of the body
+          head: false,
+          // Setting this parameter is also optional
+          respectDNT: true,
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -60,19 +62,72 @@ module.exports = {
         icon: "src/images/icon.png",
       },
     },
-	{
-		resolve: `gatsby-plugin-disqus`,
-		options: {
-			shortname: `simplifiedweb`
-		}
-	},
-	`gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `simplifiedweb`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+            {
+              site {
+                siteMetadata {
+                  title
+                  description
+                  siteUrl
+                  site_url: siteUrl
+                }
+              }
+            }
+          `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map((edge) => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.excerpt,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.frontmatter.path,
+                  guid: site.siteMetadata.siteUrl + edge.node.frontmatter.path,
+                  custom_elements: [{ "content:encoded": edge.node.html }],
+                });
+              });
+            },
+            query: `{
+
+            allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+              edges {
+                node {
+                  id
+                  excerpt(pruneLength: 250)
+                  frontmatter {
+                    date(formatString: "MMMM DD, YYYY")
+                    path
+                    title
+                    thumbnail
+                  }
+                  html
+                }
+              }
+            }
+          }
+            `,
+            output: "/rss.xml",
+            title: "SimplifiedWeb's RSS Feed",
+          },
+        ],
+      },
+    },
+    `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-netlify-cms`,
-    'gatsby-plugin-dark-mode',
+    "gatsby-plugin-dark-mode",
     // siteURL is a must for sitemap generation
     `gatsby-plugin-sitemap`,
-	`gatsby-plugin-offline`,
-	`gatsby-plugin-styled-components`
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-styled-components`,
   ],
-}
+};
