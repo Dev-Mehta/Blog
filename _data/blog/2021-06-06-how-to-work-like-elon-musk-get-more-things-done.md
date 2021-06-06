@@ -1,6 +1,6 @@
 ---
 template: BlogPost
-path: how-to-work-like-elon-musk-get-more-things-done/
+path: /how-to-work-like-elon-musk-get-more-things-done/
 date: 2021-06-06T14:21:25.936Z
 title: How to Work Like Elon Musk? Get More Things Done
 metaDescription: >-
