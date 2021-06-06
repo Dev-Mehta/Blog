@@ -348,10 +348,22 @@ body.dark {
   .gg-moon {
     display: none;
   }
+  blockquote p{
+    padding: 8px;
+    background-color: #ded3ff;
+    border: 1px solid var(--primary-color);
+    border-left: 4px solid var(--primary-color);
+    color: black;
+  }
 }
 body.light {
   .gg-sun {
     display: none;
+  }
+  blockquote p{
+  padding: 8px;
+  background-color: #dedede;
+  border-left: 4px solid black;
   }
 }
 .mode-container {
