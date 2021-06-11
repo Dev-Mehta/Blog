@@ -8,17 +8,6 @@ export default function Template({
   const { site, markdownRemark } = data // data.markdownRemark holds your post data
   const { siteMetadata } = site
   const { frontmatter, html } = markdownRemark
-  useEffect(()=>{
-	const script = document.createElement("script");
-    script.innerHTML = `(function() { // DON'T EDIT BELOW THIS LINE
-		var d = document, s = d.createElement('script');
-		s.src = 'https://simplifiedweb.disqus.com/embed.js';
-		s.setAttribute('data-timestamp', +new Date());
-		(d.head || d.body).appendChild(s);
-		})();`;
-    script.async = true;
-    document.body.appendChild(script);
-  });
   return (
     <Layout>
       <Helmet>
@@ -46,7 +35,6 @@ export default function Template({
           />
         </article>
       </div>
-	  <div id="disqus_thread"></div>
     </Layout>
   )
 }
