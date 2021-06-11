@@ -20,13 +20,6 @@ export default ({ children }) => {
   );
   return (
     <>
-      <Helmet>
-        <script
-          data-ad-client="ca-pub-1123574059568760"
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        />
-      </Helmet>
       <div className="site-wrapper">
         <header className="site-header">
           <div className="site-title">
