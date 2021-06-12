@@ -10,7 +10,7 @@ metaDescription: >-
   it here. Instead of forking his same repo, I wanted my coding structure to be
   a bit different. Long story short, I created my own repo for archiving my code
   of these learnings over there.
-thumbnail: '/assets/Day #1 of Learning DSA - Here is What I Learned.png'
+thumbnail: /assets/Day 1 of Learning DSA - Here is What I Learned.png
 ---
 From today(12th Jun, 2021) I started learning Data Structures and Algorithms at my own pace. Being a 3rd year college student I already knew the basics of sorting, searchin, Big-O Complexities and other stuff that mind sound scary to newbies. But as we all know if you really want to stand out as a programmer you need to understand from stacks to heaps, pointer to pointer math and other stuff related to data structures and algorithms.
 ﻿
