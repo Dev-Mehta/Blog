@@ -273,6 +273,8 @@ Removing all 3s from array:
 ﻿
 <div style="width:100%;height:0;padding-bottom:73%;position:relative;"><iframe src="https://giphy.com/embed/lD76yTC5zxZPG" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/the-end-thats-all-folks-lD76yTC5zxZPG">via GIPHY</a></p>
 ﻿
+
 Although spending 4.5 hours learning -  how to implement a basic data structure like array, might not sound exciting to many, I personally enjoyed coding the solution throughout. Coding the solution in C++ was both tedious and helpful as I learned many new things about C++. As I first spent 3 hours coding the C++ part, I found coding in python and java way more faster as I remembered the logic of the solution. This way I spent less time coding and more time memorizing how things work under the hood. Long story short it was a wonderful experience throughout.
 ﻿
+
 I would be also posting solutions of Day #2 - Linked Lists if tends out to be helpful for you. Until then, happy coding.
