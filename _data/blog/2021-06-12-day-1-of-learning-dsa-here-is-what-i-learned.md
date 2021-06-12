@@ -12,7 +12,7 @@ metaDescription: >-
   of these learnings over there.
 thumbnail: /assets/Day 1 of Learning DSA - Here is What I Learned.png
 ---
-From today(12th Jun, 2021) I started learning Data Structures and Algorithms at my own pace. Being a 3rd year college student I already knew the basics of sorting, searchin, Big-O Complexities and other stuff that mind sound scary to newbies. But as we all know if you really want to stand out as a programmer you need to understand from stacks to heaps, pointer to pointer math and other stuff related to data structures and algorithms.
+From today(12th Jun, 2021) I started learning Data Structures and Algorithms at my own pace. Being a 3rd year college student I already knew the basics of sorting, searching, Big-O Complexities and other stuff that mind sound scary to newbies. But as we all know if you really want to stand out as a programmer you need to understand from stacks to heaps, pointer to pointer math and other stuff related to data structures and algorithms.
 ﻿
 As I went on to search the best resources to study data structure and algorithms, I found a wonderful [study plan](https://github.com/jwasham/coding-interview-university) by [John Washam](https://github.com/jwasham/) which was prepared for cracking Google Software Engineer Coding Interview. You can take a look at it [here](https://github.com/jwasham/coding-interview-university). Instead of forking his same repo, I wanted my coding structure to be a bit different. Long story short, I created [my own repo](github.com/Dev-Mehta/dsa-daily-practice) for archiving my code of these learnings over there.
 ﻿
@@ -29,11 +29,15 @@ The task given was to develop a vector which resizes itself automatically during
 ![image](https://user-images.githubusercontent.com/55938019/121782589-dfe21c00-cbc7-11eb-9570-305c55b1a46c.png)
 ﻿
 After working for 4hrs 26 minutes on the problem, finally I ended up having working solution for all the 3 languages Python, Java and C++.
+
 <div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/FqdruC6cJYXxC" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/tired-the-big-bang-theory-exhausted-FqdruC6cJYXxC">via GIPHY</a></p>
 ﻿
-I have shared the solution for C++ here down below. It might save you from 3 hours I spent on C++(Coding C++ part was the most difficult for me). Other solutions are available on [my github repo](https://github.com/Dev-Mehta/dsa-daily-practice/tree/master/Day%201%20-%20Arrays).
-﻿
+I have shared the solution for C++ here down below. It might save you from 3 hours I spent on C++(Coding C++ part was the most difficult for m
+
+Other solutions are available on [my github repo](https://github.com/Dev-Mehta/dsa-daily-practice/tree/master/Day%201%20-%20Arrays).
+
 ## How to Implement Custom Vector Class in C++
+
 The given task is to implement a class in C++ which behaves like Vector in C++. Vectors are like dynamic arrays with the ability to resize themselves automatically during insert or delete operation. Our vector class will store elements in a contiguous manner.
 ﻿
 Certain functions that we will implement are:
