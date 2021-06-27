@@ -42,8 +42,10 @@ pre[class*="language-"] {
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-	padding: .1em;
-	border-radius: .3em;
+	padding: 4px 8px;
+	font-size: 14px;
+	background-color: var(--mobile-nav-bg);
+	color: var(--mobile-nav-fg);
 	white-space: normal;
 }
 
