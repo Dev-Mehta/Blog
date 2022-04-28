@@ -348,6 +348,9 @@ body.dark {
   .gg-moon {
     display: none;
   }
+  blockquote{
+    margin: 0px !important;
+  }
   blockquote p{
     padding: 8px;
     background-color: #ded3ff;
@@ -359,6 +362,9 @@ body.dark {
 body.light {
   .gg-sun {
     display: none;
+  }
+  blockquote {
+    margin: 0px !important;
   }
   blockquote p{
   padding: 8px;
