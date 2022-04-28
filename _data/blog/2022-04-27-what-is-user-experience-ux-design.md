@@ -87,4 +87,6 @@ Can you think of a product you loved so much that you shared it with a friend?
  
 If you did, that's a great example of user experience design in action.
 
-Stay tuned for the next post which is about Career Paths in field of User Experience Design and complete roadmap on being a User Experience Designer.
+Stay tuned for the next post which is about [Career Paths in field of User Experience Design](https://simplifiedweb.netlify.app/career-paths-in-user-experienceux-design).
+
+> Read Next Post on [**Career Paths in User Experience(UX) Design**](https://simplifiedweb.netlify.app/career-paths-in-user-experienceux-design)
