@@ -14,7 +14,7 @@ metaDescription: >-
   modeling pro.
 thumbnail: /assets/Untitled design(3).png
 ---
-![https://simplifiedweb.netlify.app/assets/Untitled%20design(3).png](https://simplifiedweb.netlify.app/assets/Untitled%20design(3).png)
+<img src="https://simplifiedweb.netlify.app/assets/Untitled%20design(3).png" alt="https://simplifiedweb.netlify.app/assets/Untitled%20design(3).png" style="border-radius: 24px;">
 
 Are you ready to take your data analysis skills to the next level? Look no further than Linear Regression, the powerful technique that can help you predict the future using past data. It may seem daunting at first, but don't worry - we've got you covered with this beginner-friendly guide to understanding and implementing Linear Regression in predictive modeling. From the mathematical representation to the assumptions and hypothesis, this guide will unlock the secrets of Linear Regression and have you mastering the art of prediction in no time.
 
