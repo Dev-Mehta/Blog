@@ -56,6 +56,9 @@ export const pageQuery = graphql`
             title
             thumbnail
           }
+          fields{
+            keywords
+          }
         }
       }
     }

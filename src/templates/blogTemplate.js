@@ -7,11 +7,12 @@ export default function Template({
 }) {
   const { site, markdownRemark } = data // data.markdownRemark holds your post data
   const { siteMetadata } = site
-  const { frontmatter, html } = markdownRemark
+  const { frontmatter, html, fields } = markdownRemark
   return (
     <Layout>
       <Helmet>
         <title>{frontmatter.title} | {siteMetadata.title}</title>
+        <meta name="keywords" content={fields.keywords}/>
         <meta name="description" content={frontmatter.metaDescription} />
       </Helmet>
       <div className="blog-post-container">
@@ -56,6 +57,9 @@ export const pageQuery = graphql`
         title
         thumbnail
         metaDescription
+      }
+      fields{
+        keywords
       }
     }
   }

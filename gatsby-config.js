@@ -75,6 +75,12 @@ module.exports = {
       },
     },
     {
+        resolve: `gatsby-transformer-remark`,
+        options: {
+            plugins: [`gatsby-remark-extract-keywords`],
+        },
+    },
+    {
       resolve: `gatsby-plugin-google-adsense`,
       options: {
         publisherId: `ca-pub-1123574059568760`

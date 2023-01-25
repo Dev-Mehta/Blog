@@ -24,6 +24,7 @@
     "gatsby-plugin-sitemap": "^2.4.0",
     "gatsby-plugin-styled-components": "^4.5.0",
     "gatsby-remark-emojis": "^0.4.2",
+    "gatsby-remark-extract-keywords": "^2.0.0",
     "gatsby-remark-prismjs": "^3.3.31",
     "gatsby-source-filesystem": "^2.1.48",
     "gatsby-transformer-remark": "^2.6.53",
