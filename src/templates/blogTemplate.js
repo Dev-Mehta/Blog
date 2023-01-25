@@ -8,7 +8,7 @@ export default function Template({
   const { site, markdownRemark } = data // data.markdownRemark holds your post data
   const { siteMetadata } = site
   const { frontmatter, html, fields } = markdownRemark
-  const img = "https://simplifiedweb.netlify.app" + frontmatter.thumbnail
+  const img = "http://simplifiedweb.netlify.app" + frontmatter.thumbnail
   return (
     <Layout>
       <Helmet>
