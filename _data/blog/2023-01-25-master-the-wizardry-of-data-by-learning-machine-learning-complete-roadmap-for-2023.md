@@ -14,6 +14,8 @@ metaDescription: >-
   provide you with the tools and knowledge you need to become a data wizard.
 thumbnail: /assets/cover-roadmap-ml.png
 ---
+## Introduction
+
 Welcome to the exciting world of Machine Learning! If you're ready to jump into this rapidly growing field and learn how to make computers learn and make decisions without being explicitly programmed, then you've come to the right place. This blog post will provide you with a roadmap to guide you through the journey of understanding the basics, getting hands-on experience, and diving deeper into advanced techniques. With our help, you'll be on your way to becoming a Machine Learning pro in no time! So grab a notebook, a pen and let's get started!
 
 Ready to take the leap into Machine Learning? Follow our roadmap and you'll be a pro in no time!
@@ -62,7 +64,7 @@ As you progress, you can delve deeper into more advanced topics such as Bayesian
 
 > TLDR: Learn statistics, for exploratory data analysis, and feature engineering,(basically fine-tuning your ML Model to its best possible version).
 
-Step 4: Learn ML Algorithms
+## Step 4: Learn ML Algorithms
 
 Machine Learning algorithms are the building blocks of Machine Learning models. They are a set of mathematical and computational techniques used to train and test models that can make predictions or decisions without being explicitly programmed. 
 
