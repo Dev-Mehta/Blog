@@ -8,10 +8,12 @@ export default function Template({
   const { site, markdownRemark } = data // data.markdownRemark holds your post data
   const { siteMetadata } = site
   const { frontmatter, html, fields } = markdownRemark
+  const img = "https://simplifiedweb.netlify.app" + frontmatter.thumbnail
   return (
     <Layout>
       <Helmet>
         <title>{frontmatter.title} | {siteMetadata.title}</title>
+        <meta property="og:image" content={img}/>
         <meta name="keywords" content={fields.keywords}/>
         <meta name="description" content={frontmatter.metaDescription} />
       </Helmet>
