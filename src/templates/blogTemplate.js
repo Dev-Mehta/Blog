@@ -7,13 +7,19 @@ export default function Template({
 }) {
   const { site, markdownRemark } = data // data.markdownRemark holds your post data
   const { siteMetadata } = site
-  const { frontmatter, html, fields } = markdownRemark
+  const { frontmatter, html,tableOfContents, fields } = markdownRemark
   const img = "http://simplifiedweb.netlify.app" + frontmatter.thumbnail
+  const url = "http://simplifiedweb.netlify.app" + frontmatter.path
   return (
     <Layout>
       <Helmet>
         <title>{frontmatter.title} | {siteMetadata.title}</title>
+        <link rel="canonical" href={url} />
         <meta property="og:image" content={img}/>
+        <meta property="og:title" content={frontmatter.title} />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="text/html" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="keywords" content={fields.keywords}/>
         <meta name="description" content={frontmatter.metaDescription} />
       </Helmet>
@@ -32,6 +38,10 @@ export default function Template({
               <div className="post-meta">{frontmatter.date}</div>
             </div>
           )}
+          <div
+            className="blog-post-content"
+            dangerouslySetInnerHTML={{ __html: tableOfContents }}
+          />
           <div
             className="blog-post-content"
             dangerouslySetInnerHTML={{ __html: html }}
@@ -53,6 +63,9 @@ export const pageQuery = graphql`
     }
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
+      tableOfContents(
+      absolute: true
+      pathToSlugField: "frontmatter.title") 
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         path

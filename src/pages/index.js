@@ -59,6 +59,7 @@ export const pageQuery = graphql`
           fields{
             keywords
           }
+          tableOfContents
         }
       }
     }

@@ -5,7 +5,8 @@ import "prismjs/themes/prism-okaidia.css";
 import { ThemeConsumer } from "styled-components";
 import themeChanger from "./themeChanger";
 import { Helmet } from "react-helmet";
-
+import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
+deckDeckGoHighlightElement();
 export default ({ children }) => {
   const data = useStaticQuery(
     graphql`
