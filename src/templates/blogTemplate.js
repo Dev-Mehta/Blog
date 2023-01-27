@@ -2,14 +2,19 @@ import React, { useEffect } from "react"
 import Helmet from 'react-helmet';
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
+import Prism from "prismjs"
+import loadLanguages from "prismjs/components/index.js"
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
+  useEffect(()=> {
+    Prism.highlightAll();
+  })
   const { site, markdownRemark } = data // data.markdownRemark holds your post data
   const { siteMetadata } = site
   const { frontmatter, html,tableOfContents, fields } = markdownRemark
   const img = "http://simplifiedweb.netlify.app" + frontmatter.thumbnail
-  const url = "http://simplifiedweb.netlify.app" + frontmatter.path
+  const url = "https://simplifiedweb.netlify.app" + frontmatter.path
   return (
     <Layout>
       <Helmet>
@@ -22,7 +27,8 @@ export default function Template({
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="keywords" content={fields.keywords}/>
         <meta name="description" content={frontmatter.metaDescription} />
-      </Helmet>
+        // <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.js"></script>
+    </Helmet>
       <div className="blog-post-container">
         <article className="post">
           
@@ -40,14 +46,13 @@ export default function Template({
           )}
           <div
             className="blog-post-content"
-            dangerouslySetInnerHTML={{ __html: tableOfContents }}
-          />
-          <div
-            className="blog-post-content"
             dangerouslySetInnerHTML={{ __html: html }}
           />
         </article>
       </div>
+      <script>
+        alert("h")
+      </script>
     </Layout>
   )
 }
@@ -63,9 +68,6 @@ export const pageQuery = graphql`
     }
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
-      tableOfContents(
-      absolute: true
-      pathToSlugField: "frontmatter.title") 
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         path
