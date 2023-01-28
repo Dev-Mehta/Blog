@@ -6,6 +6,7 @@ title: How to Create Your Own Git with Python
 metaDescription: >-
   Create your own version control system and take control of your code
   development process with Python and Git.
+thumbnail: /assets/Untitled design(4).png
 ---
 Git is known for its very simple object model – and for good reason. When learning git I discovered that the local object database is just a bunch of plain files in the `.git` directory. With the exception of the index `(.git/index)` and pack files (which are kind of optional), the layout and format of these files is very straight-forward.
 
