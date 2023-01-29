@@ -20,13 +20,20 @@ export default function Template({
       <Helmet>
         <title>{frontmatter.title} | {siteMetadata.title}</title>
         <link rel="canonical" href={url} />
-        <meta property="og:image" content={img}/>
-        <meta property="og:title" content={frontmatter.title} />
+        <meta name="title" content={frontmatter.title} />
+        <meta name="description" content={frontmatter.description} />
+        <meta name="keywords" content={fields.keywords} />
+        <meta property="og:type" content="website" />
         <meta property="og:url" content={url} />
-        <meta property="og:type" content="text/html" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="keywords" content={fields.keywords}/>
-        <meta name="description" content={frontmatter.metaDescription} />
+        <meta property="og:title" content={frontmatter.title} />
+        <meta property="og:description" content={frontmatter.description} />
+        <meta property="og:image" content={img} />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={url} />
+        <meta property="twitter:title" content={frontmatter.title} />
+        <meta property="twitter:description" content={frontmatter.description} />
+        <meta property="twitter:image" content={img} />
+
         // <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.js"></script>
     </Helmet>
       <div className="blog-post-container">
@@ -40,7 +47,7 @@ export default function Template({
           )}
           {!!frontmatter.thumbnail && (
             <div className="post-thumbnail" style={{backgroundImage: `url(${frontmatter.thumbnail})`}}>
-              <h1 className="post-title">{frontmatter.title}</h1>
+              <h1 className="post-title" style={{backgroundColor: 'rgba(0,0,0,0.6)', padding: '8px', borderRadius: '8px'}}>{frontmatter.title}</h1>
               <div className="post-meta">{frontmatter.date}</div>
             </div>
           )}
@@ -50,9 +57,6 @@ export default function Template({
           />
         </article>
       </div>
-      <script>
-        alert("h")
-      </script>
     </Layout>
   )
 }
