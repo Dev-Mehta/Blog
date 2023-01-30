@@ -71,8 +71,6 @@ You can read [this post](https://simplifiedweb.netlify.app/unlock-full-potential
 
 [Django Celery](https://pypi.org/project/django-celery/) is a powerful package that allows you to run asynchronous tasks in the background. This can be extremely useful for tasks such as sending emails, processing images, and more. With Django Celery, you can easily schedule and manage background tasks, which can help improve the performance of your application.
 
-[data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e](data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e)
-
 ## 10. Django CORS Headers
 
 [Django CORS Headers](https://pypi.org/project/django-cors-headers/) - This package allows you to easily add Cross-Origin Resource Sharing (CORS) headers to your Django views. CORS headers are necessary to allow cross-origin requests, which can be a common issue when developing web applications. This package provides a simple and flexible way to configure CORS headers for your project, and supports both class-based views and function-based views. It is also easily configurable and can be integrated with other libraries like Django Rest Framework. With Django CORS Headers, you can easily handle cross-origin requests and ensure that your application is accessible to all clients.
