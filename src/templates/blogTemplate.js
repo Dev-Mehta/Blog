@@ -21,17 +21,17 @@ export default function Template({
         <title>{frontmatter.title} | {siteMetadata.title}</title>
         <link rel="canonical" href={url} />
         <meta name="title" content={frontmatter.title} />
-        <meta name="description" content={frontmatter.description} />
+        <meta name="description" content={frontmatter.metaDescription} />
         <meta name="keywords" content={fields.keywords} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={url} />
         <meta property="og:title" content={frontmatter.title} />
-        <meta property="og:description" content={frontmatter.description} />
+        <meta property="og:description" content={frontmatter.metaDescription} />
         <meta property="og:image" content={img} />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content={url} />
         <meta property="twitter:title" content={frontmatter.title} />
-        <meta property="twitter:description" content={frontmatter.description} />
+        <meta property="twitter:description" content={frontmatter.metaDescription} />
         <meta property="twitter:image" content={img} />
 
         // <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.js"></script>
