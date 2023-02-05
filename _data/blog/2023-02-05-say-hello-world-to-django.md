@@ -18,9 +18,10 @@ In this article, we will create a simple yet traditional “hello world”, app,
 return HttpResponse("Hello World")
 ```
 
-but along with this, one line of code, you’ll also learn how to create a virtual environment to make sure all your packages stay at a same place, making it easier to develop, and scale your “Hello World” app if you want ; ). You’ll briefly learn about the file structure django uses, and what the heck does [views.py](http://views.py), [urls.py](http://urls.py) and [settings.py](http://settings.py) files mean.
+but along with this, one line of code, you’ll also learn how to create a virtual environment to make sure all your packages stay at a same place, making it easier to develop, and scale your “Hello World” app if you want ; ). You’ll briefly learn about the file structure django uses, and what the heck does views.py, urls.py and settings.py files mean.
 
 <div class="tenor-gif-embed" data-postid="18002878" data-share-method="host" data-aspect-ratio="1.56863" data-width="100%"><a href="https://tenor.com/view/the-universe-tim-and-eric-mind-blown-mind-blown-meme-mind-explosion-mind-explosion-meme-gif-18002878">The Universe Tim And Eric Mind Blown GIF</a>from <a href="https://tenor.com/search/the+universe+tim+and+eric-gifs">The Universe Tim And Eric GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
 
 If you ain’t no beginner then you can read these posts about - [Scalability & Security](https://simplifiedweb.netlify.app/build-scalable-and-secure-apis-with-django-rest-framework), [Performance Optimization](https://simplifiedweb.netlify.app/unlock-full-potential-django-app-performance-optimization-techniques) and; [Best Deployment Practices](https://simplifiedweb.netlify.app/django-and-deployment-best-practices-for-deploying-django-applications/) for your Django application. 
 
@@ -98,7 +99,7 @@ python manage.py runserver
 
 This will start the Django's built-in server now open your preferred browser and navigate to this address `http://127.0.0.1:8000/` if everything went well you should see the default Django's welcome page.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e563fd4e-321e-4f8e-a4fa-bdf62d9e3f15/Untitled.png)
+![Django Default Page](https://i.stack.imgur.com/MzXfs.png)
 
 ## Finally, hello world
 
@@ -108,7 +109,7 @@ Notice in this process you've specified two key pieces of information about that
 
 With Django, you specify those same two things, but in a different manner. The view function produces the contents of the page in the `views.py` file and the URL is specified in `urls.py` file.
 
-Create a file called [views.py](http://views.py) in your project’s directory.
+Create a file called views.py in your project’s directory.
 
 ```python
 from django.http import HttpResponse
@@ -155,6 +156,6 @@ python manage.py runserver
 
 Now visit `http://127.0.0.1:8000/` you should see Hello, World! written there.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bedd6837-211f-4903-8783-037c76526a82/Untitled.png)
+![Hello World app running in browser](https://d33wubrfki0l68.cloudfront.net/a27b9d6e10a3f5034575cce41bb329d061b3e36f/22d6c/images/02_helloworld.png)
 
 That’s all for today folks. You’ve learnt to create a hello world project in django. You can check my [ultimate django cheatsheet](https://simplifiedweb.netlify.app/the-ultimate-django-cheatsheet-because-even-ninjas-need-a-little-help-sometimes) to learn more about django.
