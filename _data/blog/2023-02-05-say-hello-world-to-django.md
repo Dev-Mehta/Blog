@@ -20,7 +20,7 @@ return HttpResponse("Hello World")
 
 but along with this, one line of code, you’ll also learn how to create a virtual environment to make sure all your packages stay at a same place, making it easier to develop, and scale your “Hello World” app if you want ; ). You’ll briefly learn about the file structure django uses, and what the heck does [views.py](http://views.py), [urls.py](http://urls.py) and [settings.py](http://settings.py) files mean.
 
-[https://tenor.com/view/the-universe-tim-and-eric-mind-blown-mind-blown-meme-mind-explosion-mind-explosion-meme-gif-18002878](https://tenor.com/view/the-universe-tim-and-eric-mind-blown-mind-blown-meme-mind-explosion-mind-explosion-meme-gif-18002878)
+<div class="tenor-gif-embed" data-postid="18002878" data-share-method="host" data-aspect-ratio="1.56863" data-width="100%"><a href="https://tenor.com/view/the-universe-tim-and-eric-mind-blown-mind-blown-meme-mind-explosion-mind-explosion-meme-gif-18002878">The Universe Tim And Eric Mind Blown GIF</a>from <a href="https://tenor.com/search/the+universe+tim+and+eric-gifs">The Universe Tim And Eric GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
 
 If you ain’t no beginner then you can read these posts about - [Scalability & Security](https://simplifiedweb.netlify.app/build-scalable-and-secure-apis-with-django-rest-framework), [Performance Optimization](https://simplifiedweb.netlify.app/unlock-full-potential-django-app-performance-optimization-techniques) and; [Best Deployment Practices](https://simplifiedweb.netlify.app/django-and-deployment-best-practices-for-deploying-django-applications/) for your Django application. 
 
