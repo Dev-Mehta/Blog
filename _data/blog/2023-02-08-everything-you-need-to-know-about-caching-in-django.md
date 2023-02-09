@@ -28,8 +28,6 @@ else:
   return generated page
 ```
 
-[]()
-
 Django comes with a robust cache system that lets you save dynamic pages so they don’t have to be calculated for each request. For convenience, Django offers different levels of cache granularity: You can cache the output of specific views, you can cache only the pieces that are difficult to produce, or you can cache your entire site.
 
 ## Prerequisites
@@ -52,8 +50,8 @@ After installing Memcached itself, you’ll need to install a Memcached binding.
 
 To use Memcached with Django:
 
-- Set `[BACKEND](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-BACKEND)` to `django.core.cache.backends.memcached.PyMemcacheCache` or `django.core.cache.backends.memcached.PyLibMCCache` (depending on your chosen memcached binding)
-- Set `[LOCATION](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-LOCATION)` to `ip:port` values, where `ip` is the IP address of the Memcached daemon and `port` is the port on which Memcached is running, or to a `unix:path` value, where `path` is the path to a Memcached Unix socket file.
+- Set [BACKEND](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-BACKEND) to `django.core.cache.backends.memcached.PyMemcacheCache` or `django.core.cache.backends.memcached.PyLibMCCache` (depending on your chosen memcached binding)
+- Set [LOCATION](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-LOCATION) to `ip:port` values, where `ip` is the IP address of the Memcached daemon and `port` is the port on which Memcached is running, or to a `unix:path` value, where `path` is the path to a Memcached Unix socket file.
 
 ```python
 # using pymemcache binding
@@ -66,7 +64,7 @@ CACHES = {
 ```
 
 One excellent feature of Memcached is its ability to share a cache over multiple servers. This means you can run Memcached daemons on multiple machines, and the program will treat the group of machines as a *single* cache, without the need to duplicate cache values on each machine. To take
-advantage of this feature, include all server addresses in `[LOCATION](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-LOCATION)`, either as a semicolon or comma delimited string, or as a list.
+advantage of this feature, include all server addresses in [LOCATION](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-LOCATION), either as a semicolon or comma delimited string, or as a list.
 
 In this example, the cache is shared over Memcached instances running on IP address 172.19.26.240 and 172.19.26.242, both on port 11211:
 
@@ -90,8 +88,8 @@ Django can store its cached data in your database. This works best if you’ve g
 
 To use a database table as your cache backend:
 
-- Set `[BACKEND](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-BACKEND)` to `django.core.cache.backends.db.DatabaseCache`
-- Set `[LOCATION](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-LOCATION)` to `tablename`, the name of the database table. This name can be whatever you want, as long as it’s a valid table name that’s not already being used in your database.
+- Set [BACKEND](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-BACKEND) to `django.core.cache.backends.db.DatabaseCache`
+- Set [LOCATION](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-LOCATION) to `tablename`, the name of the database table. This name can be whatever you want, as long as it’s a valid table name that’s not already being used in your database.
 
 In this example, the cache table’s name is `my_cache_table`
 
@@ -116,8 +114,8 @@ python manage.py createcachetable
 
 ### Filesystem Caching
 
-The file-based backend serializes and stores each cache value as a separate file. To use this backend set `[BACKEND](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-BACKEND)` to `"django.core.cache.backends.filebased.FileBasedCache"` and
-`[LOCATION](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-LOCATION)` to a suitable directory. For example, to store cached data in `/var/tmp/django_cache`, use this setting:
+The file-based backend serializes and stores each cache value as a separate file. To use this backend set [BACKEND](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-BACKEND) to `"django.core.cache.backends.filebased.FileBasedCache"` and
+[LOCATION](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-LOCATION) to a suitable directory. For example, to store cached data in `/var/tmp/django_cache`, use this setting:
 
 ```python
 CACHES = {
@@ -133,7 +131,7 @@ the user `apache`.
 
 ### **Local-memory caching**
 
-This is the default cache if another is not specified in your settings file. If you want the speed advantages of in-memory caching but don’t have the capability of running Memcached, consider the local-memory cache backend. This cache is per-process (see below) and thread-safe. To use it, set `[BACKEND](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-BACKEND)` to `"django.core.cache.backends.locmem.LocMemCache"`. For example:
+This is the default cache if another is not specified in your settings file. If you want the speed advantages of in-memory caching but don’t have the capability of running Memcached, consider the local-memory cache backend. This cache is per-process (see below) and thread-safe. To use it, set [BACKEND](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-BACKEND) to `"django.core.cache.backends.locmem.LocMemCache"`. For example:
 
 ```python
 CACHES = {
@@ -144,7 +142,7 @@ CACHES = {
 }
 ```
 
-The cache `[LOCATION](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-LOCATION)` is used to identify individual memory stores. If you only have one `locmem` cache, you can omit the `[LOCATION](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-LOCATION)`; however, if you have more than one local memory cache, you will need to assign a name to at least one of them in order to keep them separate.
+The cache [LOCATION](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-LOCATION) is used to identify individual memory stores. If you only have one `locmem` cache, you can omit the [LOCATION](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES-LOCATION); however, if you have more than one local memory cache, you will need to assign a name to at least one of them in order to keep them separate.
 
 The cache uses a least-recently-used (LRU) culling strategy.
 
@@ -152,7 +150,7 @@ Note that each process will have its own private cache instance, which means no 
 
 ## The per-site cache
 
-Once the cache is set up, the simplest way to use caching is to cache your entire site. You’ll need to add `'django.middleware.cache.UpdateCacheMiddleware'` and`'django.middleware.cache.FetchFromCacheMiddleware'` to your `[MIDDLEWARE](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-MIDDLEWARE)` setting, as in this example:
+Once the cache is set up, the simplest way to use caching is to cache your entire site. You’ll need to add `'django.middleware.cache.UpdateCacheMiddleware'` and`'django.middleware.cache.FetchFromCacheMiddleware'` to your [MIDDLEWARE](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-MIDDLEWARE) setting, as in this example:
 
 ```python
 MIDDLEWARE = [
@@ -164,12 +162,12 @@ MIDDLEWARE = [
 
 `FetchFromCacheMiddleware` caches GET and HEAD responses with status 200, where the request and response headers allow. Responses to requests for the same URL with different query parameters are considered to be unique pages and are cached separately. This middleware expects that a HEAD request is answered with the same response headers as the corresponding GET request; in which case it can return a cached GET response for HEAD request.
 
-Additionally, `UpdateCacheMiddleware` automatically sets a few headers in each `[HttpResponse](https://docs.djangoproject.com/en/4.1/ref/request-response/#django.http.HttpResponse)` which affect [downstream caches](https://docs.djangoproject.com/en/4.1/topics/cache/#downstream-caches):
+Additionally, `UpdateCacheMiddleware` automatically sets a few headers in each [HttpResponse](https://docs.djangoproject.com/en/4.1/ref/request-response/#django.http.HttpResponse) which affect [downstream caches](https://docs.djangoproject.com/en/4.1/topics/cache/#downstream-caches):
 
 - Sets the `Expires` header to the current date/time plus the defined
-`[CACHE_MIDDLEWARE_SECONDS](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHE_MIDDLEWARE_SECONDS)`.
+[CACHE_MIDDLEWARE_SECONDS](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHE_MIDDLEWARE_SECONDS).
 - Sets the `Cache-Control` header to give a max age for the page –
-again, from the `[CACHE_MIDDLEWARE_SECONDS](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHE_MIDDLEWARE_SECONDS)` setting.
+again, from the [CACHE_MIDDLEWARE_SECONDS](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHE_MIDDLEWARE_SECONDS) setting.
 
 ## The per-view cache
 
@@ -248,7 +246,7 @@ For cases, like these, django provides a low-level API. You can use this API to 
 
 ### Accessing the Cache API
 
-You can access the caches configured in the `[CACHES](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES)` setting through a dict-like object: `django.core.cache.caches`. Repeated requests for the same alias in the same thread will return the same object. As a shortcut, the default cache is available as `django.core.cache.cache`:
+You can access the caches configured in the [CACHES](https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-CACHES) setting through a dict-like object: `django.core.cache.caches`. Repeated requests for the same alias in the same thread will return the same object. As a shortcut, the default cache is available as `django.core.cache.cache`:
 
 ```python
 >>> from django.core.cache import cache
@@ -272,7 +270,7 @@ def cache_recipes_view(request):
     })
 ```
 
-******************************Common Methods:******************************
+**Common Methods**:
 
 cache.set(”key”, value) -  Set value to any picklable python object with given key.
 
