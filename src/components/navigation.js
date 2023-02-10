@@ -13,7 +13,7 @@ const MobileMenu = styled.div`
     z-index: 999;
   }
   .mobile-menu-container .circle {
-    background-color: var(--btn-hover-text-color);
+    background-color: var(--background);
     border-radius: 50%;
     -khtml-border-radius: 50%;
     z-index: 99;
@@ -43,7 +43,7 @@ const MobileMenu = styled.div`
     text-decoration: none;
   }
   nav.mobile-menu button {
-    background-color: var(--mobile-nav-bg);
+    background-color: var(--background);
     border: 0;
     border-radius: 50%;
     padding: 0;
@@ -54,10 +54,11 @@ const MobileMenu = styled.div`
     bottom: 14px;
     right: 14px;
     z-index: 100;
+    border: 2px solid var(--primary-color);
   }
   
   nav.mobile-menu button .line {
-    background-color: var(--mobile-nav-fg);
+    background-color: var(--primary-color);
     display: block;
     margin: 4px auto;
     height: 2px;
@@ -67,7 +68,7 @@ const MobileMenu = styled.div`
   .mobile-menu-container.open .circle {
     transform: translateX(50px) scale(14);
     background: var(--input-bg);
-    border: 1px solid var(--btn-hover-text-color);
+    
   }
   .mobile-menu-container.open .mobile-menu ul {
     visibility: visible;
@@ -76,7 +77,11 @@ const MobileMenu = styled.div`
   }
   .mobile-menu-container.open nav.mobile-menu ul li a {
     opacity: 1;
-    color: var(--btn-text-color);
+    color: white;
+  }
+  .mobile-menu-container.open nav.mobile-menu ul li a:hover {
+    opacity: 1;
+    color: black;
   }
   .mobile-menu-container.open .mobile-menu button .line.line-top {
     transform: translateY(3px) rotate(225deg);
@@ -115,7 +120,6 @@ export default function Navigation() {
               title
               thumbnail
             }
-            tableOfContents
           }
         }
       }
@@ -161,7 +165,6 @@ export default function Navigation() {
           <div className="circle"></div>
         </div>
       </MobileMenu>
-      <ThemeChanger />
     </div>
   );
 }

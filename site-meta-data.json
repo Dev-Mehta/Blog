@@ -1,9 +1,9 @@
 {
   "title": "SimplifiedWeb",
   "siteUrl": "https://simplifiedweb.netlify.app/",
-  "description": "Dev Mehta is a Full Stack Web and Android Developer, Part-time Blogger, and Founder at ZeroDay. Follow this blog to get latest updates on web and android technology",
+  "description": "Dev Mehta is a Full Stack Django Web Develope & Part-time Blogger. Follow this blog to get latest updates on web and android technology",
   "home": {
-    "title": "Hi! I'm Dev Mehta",
-    "description": "I am a Full Stack Web and Android Developer, Part-time Blogger, and Founder at <a href=\"https://github.com/zeroday-in\">ZeroDay</a>. I love learning new technologies and sharing the most I can. I am mostly developing Web Projects in Django or Android Projects in Java."
+    "title": "Hello! I'm Dev Mehta",
+    "description": "I am a Full Stack Django Web Developer & Part-time Blogger.I developed a certain likeliness towards coding ever since I wrote my first Hello World script in Python. I love learning new technologies and sharing the most I can. I am mostly developing Web Projects in Django or Android Projects in Java."
   }
 }
