@@ -14,12 +14,29 @@ const AboutPage = ({ data: { site } }) => {
 		  />
 		</Helmet>
 		<div>
-		<h1 className="headline">Welcome to SimplifiedWeb,</h1>
-		<p className="primary-content">Your number one source for all programming related articles. We're dedicated to giving you one of the best programming content, with a focus on easily consumable content, notes pdf to refer them later, and the best in-class support for providing content.
-		When I first started out, my passion for writing and providing valuable content to people drove me to create this blog so that SimplifiedWeb can offer you some of the best articles available over the internet.
-		I hope you enjoy my articles as much as I enjoy offering them to you. If you have any questions or comments, please don't hesitate to <Link to="/contact">contact me</Link>.
-		</p>
-		<Link to="/contact" className="button -secondary">Get in Touch &rarr;</Link>
+			<h1>Welcome to SimplifiedWeb,</h1>
+			<p>
+				Hello there! My name is Dev, and I am a Full Stack Django Web Developer and Part-time Blogger. 
+			<p/>
+			<p>
+				I have a deep love for coding that started with my first "Hello World" script in Python. I am constantly learning and exploring new technologies, and I am always eager to share my knowledge with others.
+			</p>
+			<p>
+				I have expertise in Django and Java, and I use these skills to develop web and mobile applications that are both functional and user-friendly. As a Full Stack Django Web Developer, I have the ability to work on both the front-end and back-end of web applications, making me a valuable asset in the tech industry.
+			</p>
+			<p>
+				In addition to my passion for coding, I am also a part-time blogger. I love to share my experiences and knowledge with others, and I believe that by sharing my skills, I can help others grow in their careers and learn from my expertise.
+			</p>
+			<p>
+				Stay tuned for my latest updates, tutorials, and insights into the world of web development. I am excited to share my journey with you and to help you grow in your own career.
+			</p>
+			<p>
+				Thank you for visiting my page, and I hope you enjoy my content!
+			</p>
+			<p>Don't hesitate to <a href="mailto:devbmehta04@gmail.com">mail me</a> if you have any queries.
+			</p>
+			</p>
+			<Link to="/contact" className="button -secondary">Get in Touch &rarr;</Link>
 		</div>
 	  </Layout>
 	);

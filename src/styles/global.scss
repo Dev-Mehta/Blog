@@ -139,7 +139,7 @@ a {
   text-decoration: none;
   font-weight: bold;
   font-size: 1.4rem;
-  font-family: 'Inter';
+  font-family: 'Roboto Mono', monospace, sans-serif;
   letter-spacing: -0.8px;
   border-bottom: none;
   &:hover{
@@ -371,10 +371,9 @@ body.dark {
   }
   blockquote p{
     padding: 8px;
-    background-color: green;
-    border: 1px solid var(--primary-color);
-    border-left: 4px solid var(--primary-color);
     color: black;
+    background-color: #a4faba;
+    border-left: 8px solid var(--primary-color);
   }
 }
 body.light {
@@ -396,6 +395,17 @@ body.light {
   height: 24px;
   margin-left: 20px;
 }
+
+p code, li code{
+  background: #a4fabafc;
+  color: black;
+  padding: 0px 4px;
+  margin: 4px;
+  font-weight: 700;
+  border-radius: 4px;
+  display: inline-block;
+}
+
 // CSS.gg icons for sun and moon
 .gg-sun {
   box-sizing: border-box;
