@@ -396,6 +396,12 @@ body.light {
   margin-left: 20px;
 }
 
+p code::-webkit-scrollbar, li code::-webkit-scrollbar{
+    display: none;
+}
+
+
+
 p code, li code{
   background: #a4fabafc;
   color: black;
@@ -404,7 +410,8 @@ p code, li code{
   font-weight: 700;
   border-radius: 4px;
   display: inline-block;
-  overflow-x: scroll !important;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 // CSS.gg icons for sun and moon
