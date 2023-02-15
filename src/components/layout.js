@@ -24,14 +24,14 @@ export default ({ children }) => {
       <div className="site-wrapper">
         <header className="site-header">
           <div className="site-title">
-            <Link to="/">{data.site.siteMetadata.title}</Link>
+            <Link to="/"><img src="/profile_pic.png" />{data.site.siteMetadata.title}</Link>
           </div>
           <Navigation />
         </header>
         {children}
         <footer className="site-footer">
           <p>
-            &copy; {new Date().getFullYear()} SimplifiedWeb &bull; Crafted with{" "}
+            &copy; 2021 - {new Date().getFullYear()} SimplifiedWeb &bull; Crafted with{" "}
             <span role="img" aria-label="tea">
               ☕
             </span>{" "}

@@ -134,6 +134,18 @@ a {
   background-color: red;
   color: white;
 }
+.site-title{
+  display: flex;
+  flex-direction: column;
+}
+.site-title img{
+  max-height: 30px;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: -6px;
+  margin-right: 4px;
+  border-radius: 6px;
+}
 .site-title a {
   color: var(--primary-color);
   text-decoration: none;
@@ -143,9 +155,30 @@ a {
   letter-spacing: -0.8px;
   border-bottom: none;
   &:hover{
-    color: #000000;
+    background: #00000000;
   }
 }
+
+.bx{
+  margin-bottom: -4px;
+  margin-right: 4px;
+}
+
+.about-me-header{
+  cursor: pointer;
+  font-size: 1.5rem;
+  border-bottom: 2px solid var(--primary-color);
+  max-width: fit-content;
+}
+
+details > summary {
+    list-style-type: '▶️';
+}
+
+details[open] > summary {
+    list-style-type: '🔽';
+}
+
 .hero-header {
   padding: 0 0 64px;
   max-width: 980px;
@@ -390,6 +423,11 @@ body.light {
   border-left: 8px solid var(--primary-color);
   }
 }
+
+blockquote a{
+  color: black;
+}
+
 .mode-container {
   width: 24px;
   height: 24px;

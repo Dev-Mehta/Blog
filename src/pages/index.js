@@ -28,6 +28,8 @@ const IndexPage = ({
           async
           src="https://www.googletagmanager.com/gtag/js?id=TRACKING_ID"
         />
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
+
       </Helmet>
       <HeroHeader />
       <h2>Blog Posts &darr;</h2>
