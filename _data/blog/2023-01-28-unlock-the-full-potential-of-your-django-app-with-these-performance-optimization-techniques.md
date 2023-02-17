@@ -232,7 +232,7 @@ To use django-debug-toolbar, you will first need to install it by running
     
 
 Once you've installed the package, add 'debug\_toolbar' to your \`INSTALLED\_APPS\` setting, and include the debug\_toolbar.urls in your urlpatterns.
-
+```python
     # in settings.py
     INSTALLED_APPS = [
         ...,
@@ -242,9 +242,16 @@ Once you've installed the package, add 'debug\_toolbar' to your \`INSTALLED\_APP
     # in urls.py
     urlpatterns = [
         ...,
-        path('__debug__/', include(debug_toolbar.urls)),
     ]
+```
     
+> Never use django-debug-toolbar in production.
+
+`django-debug-toolbar` is a very nice debugging tool however it can't provide you hints on when to use the `.only()`/`.defer()` and similar optimisation techniques. Also, it may not be necessarily obvious for you to know where to apply a `select_related` with debug-toolbar as it just indicates there are x similar/duplicate queries.
+
+For these reasons and many others (we lose the data as soon as we quit the session, it only keeps track of queries inside a request/response cycle i.e not in a background job for example...), you can use - [dj-tracker](https://github.com/Tijani-Dia/dj-tracker) that can give you various insights into your queries but also hints on how to optimize them. It also addresses all the missing features from debug-toolbar I mentioned.
+
+
 
 Optimizing Static File Serving
 ------------------------------
