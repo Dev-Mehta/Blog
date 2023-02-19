@@ -14,7 +14,7 @@ In this article, we will learn about django model managers. Recently when I was 
 
 The problem was “I would like to **apply logic to my apps by having methods written in models.py**. What is the best way to go about this. The documentation is great for the basics but I am **getting frustrated when working to apply business logic outside of views.py**. Any good resources on this type of flow? ***Business Logic in models.py?***”
 
-You may have faced this frustration too sometimes, because as django is a robust framework for perfectionists with deadlines, it expects us to figure this out yourself(Or, so I thought, because this question was very well covered in documentation, which you like me, might won’t have read.)
+You may have faced this frustration too sometimes, because django is a robust framework for perfectionists with deadlines, it expects us to figure this out ourselves(Or, so I thought, because this question was very well covered in documentation, which you like me, might won’t have read.)
 
 So, I gave them the solution that I generally use, to write repetitive or common django filter queries in models.py file where you define your models, like this.
 
