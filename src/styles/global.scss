@@ -441,15 +441,14 @@ p code::-webkit-scrollbar, li code::-webkit-scrollbar{
 
 
 p code, li code{
-  background: #a4fabafc;
-  color: black;
+  background: rgb(39,40,34);
+  color: pink;
   padding: 0px 4px;
-  margin: 4px;
-  font-weight: 700;
   border-radius: 4px;
   display: inline-block;
   max-width: 100%;
   overflow-x: auto;
+  font-size: 15px;
 }
 
 // CSS.gg icons for sun and moon
