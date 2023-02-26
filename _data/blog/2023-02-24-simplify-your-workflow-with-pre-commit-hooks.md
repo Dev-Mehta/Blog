@@ -60,43 +60,43 @@ Instead of creating sample-config, you can also start from scratch. In this post
 Here is a sample of pre-commit files that I am currently using for my projects. These files help me ensure that my code is clean, formatted, and free of errors before I commit it to the repository. I highly recommend using pre-commit hooks in your own projects to save time and avoid potential issues down the road.
 
 ```yaml
-# Filename: .pre-commit-config.yaml
 repos:
-  - repo: https://github.com/psf/black
+  - repo: 'https://github.com/psf/black'
     rev: 22.10.0
     hooks:
-    - id: black
-      args:
-        - --line-length=88
-      language_version: python3
-  - repo: https://github.com/PyCQA/flake8
-    rev: '5.0.4'  # pick a git hash / tag to point to
+      - id: black
+        args:
+          - '--line-length=88'
+        language_version: python3
+  - repo: 'https://github.com/PyCQA/flake8'
+    rev: 5.0.4
     hooks:
-    -   id: flake8
-        args: 
-          - "--max-line-length=88"
-        exclude: "^(.*/migrations/|core/settings.py)"
-  - repo: https://github.com/asottile/reorder_python_imports
+      - id: flake8
+        args:
+          - '--max-line-length=88'
+        exclude: ^(.*/migrations/|core/settings.py)
+  - repo: 'https://github.com/asottile/reorder_python_imports'
     rev: v3.9.0
     hooks:
-    -    id: reorder-python-imports
+      - id: reorder-python-imports
   - repo: local
     hooks:
-      -  id: django-tests
-         name: django-tests
-         entry: python manage.py test
-         always_run: true
-         pass_filenames: false
-         language: system
-	- repo: https://github.com/PyCQA/bandit
-		hooks:
-			-  id: bandit
-			   name: bandit
-			   description: 'Bandit is a tool for finding common security issues in Python code'
-			   entry: bandit
-			   language: python
-			   language_version: python3
-			   types: [python]
+      - id: django-tests
+        name: django-tests
+        entry: python manage.py test
+        always_run: true
+        pass_filenames: false
+        language: system
+  - repo: 'https://github.com/PyCQA/bandit'
+    hooks:
+      - id: bandit
+        name: bandit
+        description: Bandit is a tool for finding common security issues in Python code
+        entry: bandit
+        language: python
+        language_version: python3
+        types:
+          - python
 ```
 
 Black is a code formatter that ensures my code follows a consistent style. 
