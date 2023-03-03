@@ -4,6 +4,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Prism from "prismjs"
 import loadLanguages from "prismjs/components/index.js"
+import MailChimpForm from "../components/MailChimpForm";
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
