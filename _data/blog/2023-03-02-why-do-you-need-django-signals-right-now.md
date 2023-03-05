@@ -18,6 +18,8 @@ Signals are decoupled and allow senders to notify a set of receivers that some a
 
 This can be useful for automating tasks, such as sending emails, updating records, or logging data, whenever a certain event occurs in your app. In this tutorial, we will go through the process of using Django signals to execute code based on certain events in your app.
 
+> You can check out the [github repository](https://github.com/Dev-Mehta/django-signals-tutorial) to follow along
+
 ## Understanding Django Signals
 
 Django signals are a way to allow certain senders to notify a set of receivers that some action has taken place. Signals are sent by senders, using the `Signal.send()` method, and are received by receivers, using the `@receiver` decorator.
@@ -152,11 +154,13 @@ def user_created(sender, **kwargs):
     print(f"Creating user, {user}")
 ```
 
-Django documentation will always be the number 1 resource for further studying: [https://docs.djangoproject.com/en/4.1/topics/signals/](https://docs.djangoproject.com/en/4.1/topics/signals/)
+[Django documentation](https://docs.djangoproject.com/en/4.1/topics/signals/) will always be the number 1 resource for further studying
 
 [Also, this](https://simpleisbetterthancomplex.com/tutorial/2016/07/28/how-to-create-django-signals.html) is a good blog post by simpleisbetterthancomplex, if you want a detailed overview; rather than an introductory post like this one. 
 
 ## Conclusion
+
+You can check out the [github repository](https://github.com/Dev-Mehta/django-signals-tutorial) for all the code listed here.
 
 Django signals provide a powerful tool for executing code based on certain events in your application. By using signals, you can keep your code modular and organized, making it easier to maintain and update in the future. 
 
