@@ -102,8 +102,82 @@ class BedFactory(){
 
 When creating an object is not just a few assignments and involves some logic, it makes sense to put it in a dedicated factory instead of repeating the same code everywhere.
 
+### Factory Method
+
+Real world example,
+
+> Consider the case of a hiring manager. It is impossible for one person to interview for each of positions. Based on the job opening, they have to decide to delegate the interview steps to different people.
+
+In plain words,
+
+> It provides a way to delegate the instantiation logic to child classes.
+
+Wikipedia says
+
+> In class-based programming, the factory method pattern is a creational pattern that uses factory methods to deal with the problem of creating objects without having to specify the exact class of the object that will be created. This is done by creating objects by calling a factory method—either specified in an interface and implemented by child classes, or implemented in a base class and optionally overridden by derived classes—rather than by calling a constructor.
+
+Take our hiring manager example above. First of all we have an interviewer interface and some implementations for it.
+
+```java
+interface Interviewer{
+	void askQuestions();
+}
+
+class Developer implements Interviwer{
+	public void askQuestions(){
+		System.out.println("Ask about django ORM");
+	}
+}
+
+class CommunityExecutive implements Interviewer{
+	public void askQuestions(){
+		System.out.println("Ask about Community Building");
+	}
+}
+```
+
+Now let us create our `HiringManager`.
+
+```java
+abstract class HiringManager{
+	abstract Interviewer makeInterviewer();
+	public void takeInterview(){
+		Interviewer interviewer = makeInterviewer();
+		interviewer.askQuestions();
+	}
+}
+
+// Now any child can extend it 
+// and provide the required Interviewer
+
+class DevelopmentManager extends HiringManager {
+    protected Interviewer makeInterviewer() {
+        return new Developer();
+    }
+}
+
+class MarketingManager extends HiringManager
+{
+    protected Interviewer makeInterviewer(){
+        return new CommunityExecutive();
+    }
+}
+```
+
+And then it can be used as,
+
+```java
+Developer dev = new DevelopmentManager();
+dev.takeInterview();
+```
+
+Useful when there is some generic processing in a class but the required sub-class is dynamically decided at runtime. Or putting it in other words, when the client doesn't know what exact sub-class it might need.
+
+
+
 ### To summarize
 
 Design patterns are a template to a certain set of problems. They are not source code or machine code but rather a systematic set of logic on how to approach a certain problems. They can be a overdo, if interpreted incorrectly and applied to problems that don't require them. Types of design patterns: creational, structural, behavioral.
 
 Simple factory is a type of design pattern where you build an object to specifically only instantiate other objects, or a group of similar objects.
+
