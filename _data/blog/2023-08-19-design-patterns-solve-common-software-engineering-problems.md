@@ -173,6 +173,282 @@ dev.takeInterview();
 
 Useful when there is some generic processing in a class but the required sub-class is dynamically decided at runtime. Or putting it in other words, when the client doesn't know what exact sub-class it might need.
 
+#﻿# Abstract Factory
+
+> Extending our bed example from Simple Factory. Based on your needs you might get a wooden bed from a wooden bed shop, iron bed from an iron shop or from the relevant shop. Plus you might need a guy with different kind of specialties to fit the bed, for example a carpenter for wooden bed, welder for iron bed etc. As you can see there is a dependency between the beds now, wooden beds needs carpenter, iron beds needs a welder etc.
+
+In plain words
+
+> A factory of factories; a factory that groups the individual but related/dependent factories together without specifying their concrete classes.
+
+Wikipedia says
+
+> The abstract factory pattern provides a way to encapsulate a group of individual factories that have a common theme without specifying their concrete classes
+
+Translating the bed example above. First of all we have our `Bed` interface and some implementation for it
+
+```java
+interface Bed {
+    public String getDescription();
+}
+
+class WoodenBed implements Bed {
+    public String getDescription() {
+        return "I am a wooden bed";
+    }
+}
+
+class IronBed implements Bed {
+    public String getDescription() {
+        return "I am an iron bed";
+    }
+}
+```
+
+Then we have some capenters for each bed type
+
+```java
+interface BedFittingExpert {
+    public String getDescription();
+}
+
+class Welder implements BedFittingExpert {
+    public String getDescription() {
+        return "I can only fit iron beds";
+    }
+}
+
+class Carpenter implements BedFittingExpert {
+    public String getDescription() {
+        return "I can only fit wooden beds";
+    }
+}
+```
+
+Now we have our abstract factory that would let us make family of related objects i.e. wooden bed factory would create a wooden bed and wooden bed fitting expert and iron bed factory would create an iron bed and iron bed fitting expert
+
+```java
+interface BedFactory {
+    public Bed makeBed();
+    public BedFittingExpert makeFittingExpert();
+}
+
+class WoodenBedFactory implements BedFactory {
+    public Bed makeBed() {
+        return new WoodenBed();
+    }
+    public BedFittingExpert makeFittingExpert() {
+        return new Carpenter();
+    }
+}
+
+class IronBedFactory implements BedFactory {
+    public Bed makeBed() {
+        return new IronBed();
+    }
+    public BedFittingExpert makeFittingExpert() {
+        return new Welder();
+    }
+}
+```
+
+As you can see the wooden bed factory has encapsulated the `carpenter` and the wooden bed also iron bed factory has encapsulated the `iron bed` and `welder`. And thus it had helped us make sure that for each of the created bed, we do not get a wrong fitting expert.
+
+**When to use?**
+
+When there are interrelated dependencies with not-that-simple creation logic involved.
+
+#﻿# Builder
+
+> Imagine you are at a subway and you want to customize your full order on how you order a subway. Instantiating such an object with a constructor would result into horrendous code as you will need to specify so many options to choose from. For example you want a customized Subway deal, you have several options in how your burger is made e.g what bread do you want? what types of sauces would you like? What cheese would you want? etc. In such cases builder pattern comes to the rescue.
+
+In plain words
+
+> Allows you to create different flavors of an object while avoiding constructor pollution. Useful when there could be several flavors of an object. Or when there are a lot of steps involved in creation of an object.
+
+Wikipedia says
+
+> The builder pattern is an object creation software design pattern with the intentions of finding a solution to the telescoping constructor anti-pattern.
+
+Having said that let me add a bit about what telescoping constructor anti-pattern is. At one point or the other we have all seen a constructor like below:
+
+```java
+public Construct(int size, boolean tomato=false, boolean cheese=false......){
+	this.size = size;
+	this.tomato = tomato;
+	this.cheese = cheese;
+	...
+	...
+}
+```
+
+As you can see; the number of constructor parameters can quickly get out of hand and it might become difficult to understand the arrangement of parameters. Plus this parameter list could keep on growing if you would want to add more options in future. This is called telescoping constructor anti-pattern.
+
+### Solution
+
+The sane alternative is to use the builder pattern. First of all we have our burger that we want to make
+
+```java
+class Burger
+{
+    protected int size;
+
+    protected boolean cheese = false;
+    protected boolean pepperoni = false;
+    protected boolean lettuce = false;
+    protected boolean tomato = false;
+
+    public Burger(BurgerBuilder builder)
+    {
+        this.size = builder.size;
+        this.cheese = builder.cheese;
+        this.pepperoni = builder.pepperoni;
+        this.tomato = builder.tomato;
+        this.lettuce = builder.lettuce;
+    }
+}
+
+class BurgerBuilder
+{
+    public int size;
+
+    public boolean cheese = false;
+    public boolean pepperoni = false;
+    public boolean lettuce = false;
+    public boolean tomato = false;
+
+    public BurgerBuilder(int size)
+    {
+        this.size = size;
+    }
+
+    public BurgerBuilder addPepperoni()
+    {
+        this.pepperoni = true;
+        return this;
+    }
+
+    public BurgerBuilder addLettuce()
+    {
+        this.lettuce = true;
+        return this;
+    }
+
+    public BurgerBuilder addCheese()
+    {
+        this.cheese = true;
+        return this;
+    }
+
+    public BurgerBuilder addTomato()
+    {
+	    this.tomato = true;
+        return this;
+    }
+
+    public Burger build()
+    {
+        return new Burger(this);
+    }
+}
+```
+
+And then we can use it like this,
+
+```java
+Burger burger = new BurgerBuilder(14)
+					.addPepperoni()
+					.addTomato()
+					.addCheese()
+					.addLettuce()
+					.build();
+burger.eat();
+```
+
+**When to use?**
+
+When there could be several flavors of an object and to avoid the constructor telescoping. The key difference from the factory pattern is that; factory pattern is to be used when the creation is a one step process while builder pattern is to be used when the creation is a multi step process.
+
+#﻿# Prototype
+
+> Prototype design pattern is all about cloning
+
+In plain words,
+> Create object based on an existing object through cloning.
+
+Wikipedia says
+
+> The prototype pattern is a creational design pattern in software development. It is used when the type of objects to create is determined by a prototypical instance, which is cloned to produce new objects.
+
+In short, it allows you to create a copy of an existing object and modify it to your needs, instead of going through the trouble of creating an object from scratch and setting it up.
+
+**Programmatic Example**
+
+```java
+public abstract class Tree{
+	...
+	public abstract Tree copy();
+	...
+}
+
+public class PineTree extends Tree{
+	@Override 
+	public Tree copy(){
+		PineTree t = new PineTree(this.getMass(), this.getHeight());
+		return t;
+	}
+}
+
+public class BananaTree extends Tree{
+	@Override 
+	public Tree copy(){
+		BananaTree t = new BananaTree(this.getMass(), this.getHeight());
+		return t;
+	}
+}
+```
+
+```java
+// Then it can be used like
+PineTree original = new PineTree(4,3);
+PineTree copycat = original.copy();
+```
+
+#﻿# Singleton
+
+> There can only be one president of a country at a time. The same president has to be brought to action, whenever duty calls. President here is singleton.
+
+In plain words
+
+> Ensures that only one object of a particular class is ever created.
+
+Wikipedia says
+
+> In software engineering, the singleton pattern is a software design pattern that restricts the instantiation of a class to one object. This is useful when exactly one object is needed to coordinate actions across the system.
+
+Singleton pattern is actually considered an anti-pattern and overuse of it should be avoided. It is not necessarily bad and could have some valid use-cases but should be used with caution because it introduces a global state in your application and change to it in one place could affect in the other areas and it could become pretty difficult to debug. The other bad thing about them is it makes your code tightly coupled plus mocking the singleton could be difficult.
+
+**Programmatic Example**
+
+To create a singleton, make the constructor private, disable cloning, disable extension and create a static variable to house the instance
+
+```java
+class President{
+	private static President instance = null;
+	public static synchronized President getInstance(){
+		if(instance == null)
+			instance = new President();
+		return instance;
+	}
+	@Override
+	protected Object clone() throws CloneNotSupportedException{
+		return instance;
+	}
+} 
+```
+
+
+
 
 
 ### To summarize
