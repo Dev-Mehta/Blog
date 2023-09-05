@@ -5,7 +5,8 @@ date: 2023-08-19T07:30:36.998Z
 title: Design Patterns - Solve common software engineering problems
 thumbnail: /assets/design.jpg
 ---
-In the ever-evolving world of software development, mastering the art of problem-solving is key. When you're faced with recurring challenges in your code, you don't want to reinvent the wheel every time, right? That's where design patterns come to the rescue. In this blog, we're going to delve into what design patterns are, why they're essential, and take a closer look at one of the fundamental types: Simple factory - a creational design pattern .
+
+In the ever-evolving world of software development, mastering the art of problem-solving is key. When you're faced with recurring challenges in your code, you don't want to reinvent the wheel every time, right? That's where design patterns come to the rescue. In this blog, we're going to delve into what design patterns are, why they're essential, and take a closer look at one of the fundamental types: Simple factory - a creational design pattern .
 
 Design patterns are solutions to certain recurring common problems. These are not classes, packages, or libraries that you can plug into your choice of language or project, but rather a systematic set of guidelines on how to approach a certain problem in certain situations.
 
@@ -173,7 +174,7 @@ dev.takeInterview();
 
 Useful when there is some generic processing in a class but the required sub-class is dynamically decided at runtime. Or putting it in other words, when the client doesn't know what exact sub-class it might need.
 
-#﻿# Abstract Factory
+## Abstract Factory
 
 > Extending our bed example from Simple Factory. Based on your needs you might get a wooden bed from a wooden bed shop, iron bed from an iron shop or from the relevant shop. Plus you might need a guy with different kind of specialties to fit the bed, for example a carpenter for wooden bed, welder for iron bed etc. As you can see there is a dependency between the beds now, wooden beds needs carpenter, iron beds needs a welder etc.
 
@@ -258,7 +259,7 @@ As you can see the wooden bed factory has encapsulated the `carpenter` and the
 
 When there are interrelated dependencies with not-that-simple creation logic involved.
 
-#﻿# Builder
+## Builder
 
 > Imagine you are at a subway and you want to customize your full order on how you order a subway. Instantiating such an object with a constructor would result into horrendous code as you will need to specify so many options to choose from. For example you want a customized Subway deal, you have several options in how your burger is made e.g what bread do you want? what types of sauces would you like? What cheese would you want? etc. In such cases builder pattern comes to the rescue.
 
@@ -369,7 +370,7 @@ burger.eat();
 
 When there could be several flavors of an object and to avoid the constructor telescoping. The key difference from the factory pattern is that; factory pattern is to be used when the creation is a one step process while builder pattern is to be used when the creation is a multi step process.
 
-#﻿# Prototype
+## Prototype
 
 > Prototype design pattern is all about cloning
 
@@ -414,7 +415,7 @@ PineTree original = new PineTree(4,3);
 PineTree copycat = original.copy();
 ```
 
-#﻿# Singleton
+## Singletom
 
 > There can only be one president of a country at a time. The same president has to be brought to action, whenever duty calls. President here is singleton.
 
@@ -446,10 +447,6 @@ class President{
 	}
 } 
 ```
-
-
-
-
 
 ### To summarize
 
