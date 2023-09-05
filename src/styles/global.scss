@@ -62,7 +62,7 @@ h4 {
 }
 
 body.dark {
-  --primary-color: #50fa7b;
+  --primary-color: hsl(215,75%,60%);
   --primary-text-color: #fff;
   --featured-bg: #66578d;
   --featured-text: #fff;
@@ -84,6 +84,20 @@ body.dark {
   --input-bg: var(--card-bg);
   --mobile-nav-bg: #fff;
   --mobile-nav-fg: var(--btn-hover-text-color);
+  --accent-h: 215; /* Accent hue */
+  --accent-s: 75%; /* Accent saturation */
+  --accent-d: 70%; /* Accent lightness Dark Mode */
+  --accent-l: 60%; /* Accent lightness Light Mode */
+  --text-accent: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+  --yellow: #e5b567;
+  --orange: #e87d3e;
+  --red: #e83e3e;
+  --purple: #9e86c8;
+  --h1-color: var(--text-normal);
+  --h2-color: var(--text-accent);
+  --h3-color: var(--yellow);
+  --h4-color: var(--yellow);
+  --h5-color: var(--red);
 }
 /* System Fonts as used by Medium and WordPress */
 body {
@@ -430,11 +444,13 @@ body.dark {
   .gg-moon {
     display: none;
   }
+  blockquote{
+    margin: 0px;
+  }
   blockquote p{
-    padding: 8px;
-    color: black;
-    background-color: #a4faba;
-    border-left: 8px solid var(--primary-color);
+  padding: 8px;
+  color: #3eb4bf;
+  background-color: black;
   }
 }
 body.light {
