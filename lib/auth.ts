@@ -1,5 +1,5 @@
 import NextAuth from 'next-auth';
-import GitHub from 'next-auth/providers/github';
+import GitHubProvider from 'next-auth/providers/github';
 
 export const {
   handlers: { GET, POST },
@@ -7,7 +7,7 @@ export const {
 } = NextAuth({
   trustHost: true,
   providers: [
-    GitHub({
+    GitHubProvider({
       clientId: process.env.OAUTH_CLIENT_KEY as string,
       clientSecret: process.env.OAUTH_CLIENT_SECRET as string,
     }),
