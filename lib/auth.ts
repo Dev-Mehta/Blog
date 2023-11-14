@@ -5,6 +5,7 @@ export const {
   handlers: { GET, POST },
   auth,
 } = NextAuth({
+  trustHost: true,
   providers: [
     GitHub({
       clientId: process.env.OAUTH_CLIENT_KEY as string,

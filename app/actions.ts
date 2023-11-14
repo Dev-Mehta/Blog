@@ -72,7 +72,7 @@ export async function deleteGuestbookEntries(selectedEntries: string[]) {
   const session = await getSession();
   const email = session.user?.email as string;
 
-  if (email !== 'me@simplifiedweb.netlify.app') {
+  if (email !== 'devbmehta04@gmail.com') {
     throw new Error('Unauthorized');
   }
 
