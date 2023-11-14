@@ -29,12 +29,12 @@ const computedFields = {
       dateModified: doc.publishedAt,
       description: doc.summary,
       image: doc.image
-        ? `https://leerob.io${doc.image}`
-        : `https://leerob.io/og?title=${doc.title}`,
-      url: `https://leerob.io/blog/${doc._raw.flattenedPath}`,
+        ? `https://simplifiedweb.netlify.app${doc.image}`
+        : `https://simplifiedweb.netlify.app/og?title=${doc.title}`,
+      url: `https://simplifiedweb.netlify.app${doc._raw.flattenedPath}`,
       author: {
         '@type': 'Person',
-        name: 'Lee Robinson',
+        name: 'Dev Mehta',
       },
     }),
   },

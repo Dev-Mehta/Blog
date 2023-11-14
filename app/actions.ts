@@ -57,8 +57,8 @@ export async function saveGuestbookEntry(formData: FormData) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'guestbook@leerob.io',
-      to: 'me@leerob.io',
+      from: 'guestbook@simplifiedweb.netlify.app',
+      to: 'me@simplifiedweb.netlify.app',
       subject: 'New Guestbook Entry',
       html: `<p>Email: ${email}</p><p>Message: ${body}</p>`,
     }),
@@ -72,7 +72,7 @@ export async function deleteGuestbookEntries(selectedEntries: string[]) {
   const session = await getSession();
   const email = session.user?.email as string;
 
-  if (email !== 'me@leerob.io') {
+  if (email !== 'me@simplifiedweb.netlify.app') {
     throw new Error('Unauthorized');
   }
 

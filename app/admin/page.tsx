@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default async function GuestbookPage() {
   const session = await auth();
-  if (session?.user?.email !== 'me@leerob.io') {
+  if (session?.user?.email !== 'me@simplifiedweb.netlify.app') {
     redirect('/');
   }
 

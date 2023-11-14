@@ -25,8 +25,8 @@ export default function ViewCounter({
   }, []);
 
   return (
-    <p className="text-neutral-600 dark:text-neutral-400">
+    <span className="text-neutral-600 dark:text-neutral-400">
       {`${number.toLocaleString()} views`}
-    </p>
+    </span>
   );
 }
