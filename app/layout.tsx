@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     types: {
-      "application/rss+xml": "http://simplifiedweb.netlify.app/api/blog/feed.xml",
+      "application/rss+xml": "http://localhost:3000/api/blog/feed.xml",
     }
   }
 };
