@@ -40,6 +40,11 @@ export const metadata: Metadata = {
   verification: {
     google: 'eZSdmzAXlLkKhNJzfgwDqWORghxnJ8qR9_CHdAh5-xw',
   },
+  alternates: {
+    types: {
+      "application/rss+xml": "http://simplifiedweb.netlify.app/api/blog/feed.xml",
+    }
+  }
 };
 
 export default function RootLayout({
