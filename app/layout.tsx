@@ -6,7 +6,7 @@ import { GeistMono } from 'geist/font/mono';
 import Sidebar from './components/sidebar';
 import { Analytics } from '@vercel/analytics/react';
 import Head from 'next/head';
-
+import Image from 'next/image';
 export const metadata: Metadata = {
   metadataBase: new URL('https://simplifiedweb.netlify.app'),
   title: {
@@ -18,7 +18,14 @@ export const metadata: Metadata = {
     title: 'Dev Mehta',
     description: 'Developer, writer, and creator.',
     url: 'https://simplifiedweb.netlify.app',
-    siteName: 'Dev Mehta',
+    siteName: 'SimplifiedWeb',
+    images: [
+      {
+        url: "http://simplifiedweb.netlify.app/opengraph-image.png",
+        width: 1920,
+        height: 1080,
+      }
+    ],
     locale: 'en_US',
     type: 'website',
   },
@@ -36,15 +43,22 @@ export const metadata: Metadata = {
   twitter: {
     title: 'Dev Mehta',
     card: 'summary_large_image',
+    images: [
+      {
+        url: "http://simplifiedweb.netlify.app/opengraph-image.png",
+        width: 1920,
+        height: 1080,
+      }
+    ],
   },
   verification: {
     google: 'eZSdmzAXlLkKhNJzfgwDqWORghxnJ8qR9_CHdAh5-xw',
   },
   alternates: {
     types: {
-      "application/rss+xml": "http://localhost:3000/api/blog/feed.xml",
+      "application/rss+xml": "http://simplifiedweb.netlify.app/api/blog/feed.xml",
     }
-  }
+  },
 };
 
 export default function RootLayout({
@@ -66,6 +80,12 @@ export default function RootLayout({
           <Sidebar />
           {children}
           <Analytics />
+          <div>
+            <a target="_blank" href="https://icons8.com/icon/57324/rick-sanchez">
+              <Image className='inline-block mt-[-4px]' src={"/icon.png"} width={24} height={24} alt="Rick Sanchez" /></a>
+            <span className='ml-2'>Favicon by <a target="_blank" href="https://icons8.com">Icons8
+            </a></span>
+          </div>
         </main>
       </body>
     </html>

@@ -39,7 +39,7 @@ export async function generateMetadata({
       url: `https://simplifiedweb.netlify.app/${slug}`,
       images: [
         {
-          url: ogImage,
+          url: "http://simplifiedweb.netlify.app/opengraph-image.png",
         },
       ],
     },
