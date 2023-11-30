@@ -7,7 +7,7 @@ export default function Page() {
       <section>
         <h1 className="font-semibold text-3xl mb-8 tracking-tighter">Hey, I'm Dev👋</h1>
         <p className="prose prose-neutral dark:prose-invert">
-          I am a code monkey.
+          I am a <strong>code monkey</strong>.
         </p>
         <p className="prose prose-neutral dark:prose-invert">
           I sometimes write.
@@ -15,8 +15,8 @@ export default function Page() {
         <p className="prose prose-neutral dark:prose-invert">
           I developed a certain likeliness towards coding ever since I wrote my first Hello World script in Python. I love learning new technologies and sharing my learnings whenever I can.
         </p>
-        <p>I am currently learning <del className="prose prose-neutral dark:prose-invert">c++</del>, <del className="prose prose-neutral dark:prose-invert">python</del>, <del className="prose prose-neutral dark:prose-invert">java</del>, <del className="prose prose-neutral dark:prose-invert">django</del>, <del className="prose prose-neutral dark:prose-invert">javascript</del>, <ins className="no-underline">mern stack.</ins></p>
-        <p>I am currently working on <del className="prose prose-neutral dark:prose-invert">my blog</del>, <del className="prose prose-neutral dark:prose-invert">trading skills</del>, <del className="prose prose-neutral dark:prose-invert">math</del>, <del className="prose prose-neutral dark:prose-invert">programming</del>, <del className="prose prose-neutral dark:prose-invert">writing skills</del>, <del className="prose prose-neutral dark:prose-invert">open source django projects</del>, <ins className="no-underline">structure and interpretation of computer programs.</ins></p>
+        <p>I am currently learning <del className="prose prose-neutral dark:prose-invert">c++</del>, <del className="prose prose-neutral dark:prose-invert">python</del>, <del className="prose prose-neutral dark:prose-invert">java</del>, <del className="prose prose-neutral dark:prose-invert">django</del>, <del className="prose prose-neutral dark:prose-invert">javascript</del>, <strong><ins className="no-underline">mern stack.</ins></strong></p>
+        <p>I am currently working on <del className="prose prose-neutral dark:prose-invert">my blog</del>, <del className="prose prose-neutral dark:prose-invert">trading skills</del>, <del className="prose prose-neutral dark:prose-invert">math</del>, <del className="prose prose-neutral dark:prose-invert">programming</del>, <del className="prose prose-neutral dark:prose-invert">writing skills</del>, <del className="prose prose-neutral dark:prose-invert">open source django projects</del>, <strong><ins className="no-underline">structure and interpretation of computer programs.</ins></strong></p>
       </section>
       <section>
         <h2 className="font-semibold text-2xl mt-8 tracking-tighter">Advice💡</h2>

@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     images: [
       {
-        url: "http://simplifiedweb.netlify.app/opengraph-image.png",
+        url: "http://blog-vercel-tau.app/og",
         width: 1920,
         height: 1080,
       }

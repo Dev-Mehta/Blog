@@ -25,8 +25,8 @@ export async function generateMetadata({
     slug,
   } = post;
   const ogImage = image
-    ? `https://blog-tau-vercel.vercel.app${image}`
-    : `https://blog-tau-vercel.vercel.app/og?title=${title}`;
+    ? `https://blog-vercel-tau.vercel.app${image}`
+    : `https://blog-vercel-tau.vercel.app/og?title=${title}`;
 
   return {
     title,
