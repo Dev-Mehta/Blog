@@ -25,8 +25,8 @@ export async function generateMetadata({
     slug,
   } = post;
   const ogImage = image
-    ? `https://simplifiedweb.netlify.app${image}`
-    : `https://simplifiedweb.netlify.app/og?title=${title}`;
+    ? `https://blog-tau-vercel.vercel.app${image}`
+    : `https://blog-tau-vercel.vercel.app/og?title=${title}`;
 
   return {
     title,

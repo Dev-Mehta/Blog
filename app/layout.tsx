@@ -81,7 +81,7 @@ export default function RootLayout({
           {children}
           <Analytics />
           <div>
-            <a target="_blank" href="https://icons8.com/icon/57324/rick-sanchez">
+            <a target="_blank" href="https://icons8.com/icon/MgH5EHKyvgjX/satoru-gojo">
               <Image className='inline-block mt-[-4px]' src={"/icon.png"} width={24} height={24} alt="Rick Sanchez" /></a>
             <span className='ml-2'>Favicon by <a target="_blank" href="https://icons8.com">Icons8
             </a></span>
