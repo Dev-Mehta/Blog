@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName: 'SimplifiedWeb',
     images: [
       {
-        url: "http://simplifiedweb.netlify.app/opengraph-image.png",
+        url: "http://blog-tau-vercel.app/og",
         width: 1920,
         height: 1080,
       }
@@ -70,7 +70,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={clsx(
-        'text-black bg-white dark:text-white dark:bg-[#111010]',
+        'text-black bg-white dark:text-white dark:bg-[#000000]',
         GeistSans.variable,
         GeistMono.variable
       )}
@@ -80,11 +80,13 @@ export default function RootLayout({
           <Sidebar />
           {children}
           <Analytics />
-          <div>
+          <div className='mt-4'>
             <a target="_blank" href="https://icons8.com/icon/MgH5EHKyvgjX/satoru-gojo">
               <Image className='inline-block mt-[-4px]' src={"/icon.png"} width={24} height={24} alt="Rick Sanchez" /></a>
             <span className='ml-2'>Favicon by <a target="_blank" href="https://icons8.com">Icons8
             </a></span>
+            <p></p>
+            <p className='mt-2 prose dark:prose-invert prose-neutral'>Design Template by <a href="https://leerob.io">Lee Robinson</a></p>
           </div>
         </main>
       </body>

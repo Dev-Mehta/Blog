@@ -29,6 +29,14 @@ html {
   @apply transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
 }
 
+.prose a{
+  color: #3291ff !important;
+  text-decoration: none !important;
+}
+.prose a:hover{
+  text-decoration: underline !important;
+}
+
 .prose .anchor:after {
   @apply text-neutral-300 dark:text-neutral-700;
   content: '#';
@@ -40,6 +48,7 @@ html {
 
 .prose pre {
   @apply border border-neutral-800 !bg-neutral-900;
+  background-color: #000 !important;
 }
 
 .prose code {
@@ -101,6 +110,10 @@ table {
   max-width: fit-content;
   overflow-x: auto;
   white-space: nowrap;
+}
+
+blockquote{
+  border-left-color: #3291ff !important;
 }
 
 .prose .callout > p {

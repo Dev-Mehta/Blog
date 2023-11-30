@@ -1,11 +1,14 @@
 import { allBlogs } from 'contentlayer/generated';
 import Script from "next/script";
+import Image from 'next/image';
 
 export default function Page() {
   return (
     <div>
       <section>
-        <h1 className="font-semibold text-3xl mb-8 tracking-tighter">Hey, I'm Dev👋</h1>
+        <h1 className="flex font-semibold text-3xl mb-8 tracking-tighter">Hey, I'm Dev 
+          <div className='bg-transparent dark:bg-white ml-2 mt-[0px] p-1' style={{borderRadius: "50%"}}><Image className='' width={30} height={30} alt="Gojo Satoru" src={"/icon.png"} /></div>
+        </h1>
         <p className="prose prose-neutral dark:prose-invert">
           I am a <strong>code monkey</strong>.
         </p>
@@ -42,13 +45,13 @@ export default function Page() {
         <p>&nbsp;</p>
         <ul className="list-disc list-inside">
           <li>
-            <a className="hover:text-blue-500 underline" href="https://stackoverflow.blog/2022/12/30/you-should-be-reading-academic-computer-science-papers/">You should be reading academic computer science papers
+            <a className="" href="https://stackoverflow.blog/2022/12/30/you-should-be-reading-academic-computer-science-papers/">You should be reading academic computer science papers
               <svg className="ml-2 inline" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z" fill="currentColor"></path></svg>
             </a>
           </li>
-          <li><a className="hover:text-blue-500 underline" href="https://www.reddit.com/r/programming/comments/17qgbx8/10_hardtoswallow_truths_they_wont_tell_you_about/">10 hard-to-swallow truths they won't tell you about software engineer job
+          <li><a className="" href="https://www.reddit.com/r/programming/comments/17qgbx8/10_hardtoswallow_truths_they_wont_tell_you_about/">10 hard-to-swallow truths they won't tell you about software engineer job
           </a></li>
-          <li><a className="hover:text-blue-500 underline" href="https://www.reddit.com/r/programming/comments/17p95v7/speed_up_a_program_for_the_50_years_old_processor/">Speed up a program for the 50 years old processor by 180000%</a></li>
+          <li><a className="" href="https://www.reddit.com/r/programming/comments/17p95v7/speed_up_a_program_for_the_50_years_old_processor/">Speed up a program for the 50 years old processor by 180000%</a></li>
         </ul>
       </section>
       <section>
