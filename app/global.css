@@ -124,9 +124,10 @@ blockquote{
   @apply grid min-w-full break-words rounded-none border-0 bg-transparent p-0 text-sm text-black;
   counter-reset: line;
   box-decoration-break: clone;
+  font-weight: bold;
 }
 [data-rehype-pretty-code-fragment] .line {
-  @apply py-1;
+  padding-left: 0.5rem;
 }
 [data-rehype-pretty-code-fragment] [data-line-numbers] > .line::before {
   counter-increment: line;
@@ -138,7 +139,9 @@ blockquote{
   color: gray;
 }
 [data-rehype-pretty-code-fragment] .line--highlighted {
-  @apply bg-slate-500 bg-opacity-10;
+  @apply bg-blue-400 bg-opacity-30;
+  border: none;
+  border-left: 2px solid #3291ff;
 }
 [data-rehype-pretty-code-fragment] .line-highlighted span {
   @apply relative;

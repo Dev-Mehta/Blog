@@ -1,0 +1,137 @@
+---
+title: Django Generated Fields
+publishedAt: '2023-12-05T08:14:51Z'
+summary: Learn about the new generated fields that comes with django 5
+---
+
+Django, just released it new major version, [django 5.0](https://docs.djangoproject.com/en/dev/releases/5.0/), and one of the features that gained everyone's eyes is `GeneratedField`. Remember [model managers](http://localhost:3000/django-model-managers-make-things-less-complicated), that we used to apply business logic to database fields.
+
+<Callout emoji="⚠️" bg="warning">
+If you want to try Django 5.0 or its upcoming version, you would want to have python>=3.10 in your system. Django 4.2.x was the last series to support python 3.8 and 3.9. See more about it [here](https://docs.djangoproject.com/en/dev/releases/5.0/#python-compatibility)
+</Callout>
+
+## `GeneratedField`'s lore
+
+Earlier we used methods inside our models to filter common business queries in our model itself, like this:
+
+```python
+from  django.db import models
+ 
+class Post(models.Model):
+	title = models.CharField(max_length=70)
+	# ...
+	
+	def get_howto_guides(self):
+		return Post.objects.filter(title__istartswith="how to")
+```
+
+or we can use [Managers](https://docs.djangoproject.com/en/5.0/topics/db/managers/) like this, 
+
+```python
+from django.db import models
+ 
+class HowtoPostsManager(models.Manager):
+	def get_queryset(self):
+		return super().get_queryset().filter(title__istartswith="how to")
+		# istartswith lookup field is used to
+		# lookup case-insensitive titles.
+		
+class Post(models.Model):
+	# ...
+	objects = models.Manager() # Default Manager
+	how_to = models.HowtoPostsManager() # our custom manager
+```
+
+Now `Post.objects.all()`, will return all the posts from the database, while `Post.how_to.all()`, will return only posts whose title starts with “How to”.
+
+Now `GeneratedField` comes into play. Look at this scenario where there is a model named `Booking`.
+
+```python
+from django.db import models
+
+class Booking(models.Model):
+    start_date = models.DateField()
+    end_date = models.DateField()
+```
+
+Here if I want to calculate the total duration of `Booking`, I will implement it like this, 
+
+```python {7,8}
+from django.db import models
+
+class Booking(models.Model):
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    def duration(self):
+        return self.end_date - self.start_date
+```
+
+Or, I can use a model manager, like this,
+
+```python {2, 4-6, 11}
+from django.db import models
+from django.db.models import F
+
+class DurationManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().annotate(duration=F("end_date")-F("start_date"))
+
+class Booking(models.Model):
+    start_date = models.DateField()
+    end_date = models.DateField()
+    objects = DurationManager()
+```
+<Callout emoji="💡" bg="success">
+But, with both of these options, the field `duration` doesn't exist on database, so I can't index it. This is where `GeneratedField` comes in.
+</Callout>
+
+I can use `GeneratedField` to create a field `duration` on my `Booking` model, which will be kept up-to-date automatically by database. I can also choose to **persist** this in the database, which means I can index it. 
+
+```python {2,7-11}
+from django.db import models
+from django.db.models import F
+
+class Booking(models.Model):
+    start_date = models.DateField()
+    end_date = models.DateField()
+    duration = models.GeneratedField(
+        expression=F("end_date")-F("start_date"),
+        output_field=models.DurationField(),
+        db_persist=True
+    )
+```
+
+### TL;DR
+
+`GeneratedField` is a new Django 5.0 feature and has these characteristics:
+- Its value is calculated entirely by the database
+- It works in all supported backend databases
+
+## GeneratedField
+
+The `GeneratedField` are full-fledged fields that can be used in queries, displayed and even indexed but their values cannot be set or modified because they are automatically calculated by the database itself whenever the other fields of the same row are modified.
+
+For this reason, they are very useful for having immediately available values calculated starting from the other fields of the same model as long as these are in the same database table.
+
+The definition of the `GeneratedField` class requires specifying the `expression`, `output_field`, and `db_persist` attributes.
+
+### Attributes
+
+- **db_persist** - `True`|`False` - If set to `True`, it will occupy database storage as if it were a real column. Can be used for indexing.
+- **output_field** - An explicit model field instance to define the generated fields datatype and its other attributes. Eg: `FloatField`, `DateField`, `DurationField` etc.
+- **expression** - The expression that the database will evaluate to automatically set the field value each time the model is changed.
+
+<ProsCard title="GeneratedField" pros={["You want to bring a lot of logic back into database", "Simplify the collaboration of different application on same database"]} />
+
+## References
+
+- [https://docs.djangoproject.com/en/dev/releases/5.0/](https://docs.djangoproject.com/en/dev/releases/5.0/#python-compatibility)
+- [What's new in Django 5.0! - (Video)](https://www.youtube.com/watch?v=lPl5Q5gv9G8) -> (Recommended to Subscribe)
+- [Database generated columns⁽¹⁾: Django & SQLite](https://www.paulox.net/2023/11/07/database-generated-columns-part-1-django-and-sqlite/)
+
+## Further Reading
+
+- [GeneratedField - Django Documentation](https://docs.djangoproject.com/en/5.0/ref/models/fields/#django.db.models.GeneratedField)
+- [Generated Columns - SQLite Documentation](https://www.sqlite.org/gencol.html)
+- [The Ultimate Guide to Generated Columns](https://www.dbvis.com/thetable/the-ultimate-guide-to-generated-columns/)
