@@ -7,6 +7,13 @@ summary: >-
   streamline your development experience and improve your application's
   maintainability with Django model managers.
 ---
+
+<Callout emoji="⚠️" bg="warning">
+<h3 className="mt-0 text-neutral-900">Update - 5 Dec 2023</h3>
+<p className="my-1">Django released its latest version(at the time of writing this) - Django 5.0 which introduces [GeneratedField](https://docs.djangoproject.com/en/5.0/ref/models/fields/#django.db.models.GeneratedField)</p>
+<p className="my-1">You can read [my blogpost on it](https://simplifiedweb.netlify.app/django-generated-fields) which gives a short introduction to GeneratedField along with further reading pointers</p>
+</Callout>
+
 In this article, we will learn about django model managers. Recently when I was scrolling through  [r/django](https://www.reddit.com/r/django/) reddit community, I was excited to help other django developers; solve their errors. I went through some posts and read the problems to get started, and I found the first problem, I liked to solve.
 
 The problem was “I would like to **apply logic to my apps by having methods written in models.py**. What is the best way to go about this. The documentation is great for the basics but I am **getting frustrated when working to apply business logic outside of views.py**. Any good resources on this type of flow? ***Business Logic in models.py?***”
@@ -35,8 +42,6 @@ I soon realized that as our codebase will grow, our models will become bloated w
 It wasn't until I stumbled across the concept of model managers that I realized there was a better way to organize my code(If you use reddit, join [r/django](https://reddit.com/r/django). You will get to learn so many new things daily). Model managers, I learned, are a way to encapsulate model-level operations and queries in a clean and modular way.
 
 ## How to do it.
-
-![Talk is cheap show me the code](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/0a029f10-1e38-4e29-9a12-89c4b63a550f/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230219%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230219T125152Z&X-Amz-Expires=86400&X-Amz-Signature=4997b8b2ffac3c522102f38dd98a25629700e29f29c3389bf37c2335b83039c2&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
 
 By default, Django adds a `Manager` with the name `objects` to every Django model class. However, if you want to use `objects` as a field name, or if you want to use a name other than `objects` for the `Manager`, you can rename it on a per-model basis. To rename the `Manager` for a given class, define a class attribute of type `models.Manager()` on that model. For example:
 

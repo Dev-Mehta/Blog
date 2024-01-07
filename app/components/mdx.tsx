@@ -28,8 +28,10 @@ function RoundedImage(props) {
 
 function Callout(props) {
   let bg = props.bg ? props.bg : "bg-neutral-50 dark:bg-neutral-800";
-  bg = bg == "warning" ? "bg-yellow-100 dark:bg-yellow-300 dark:text-neutral-900" : bg;
-  bg = bg == "success" ? "bg-green-100 dark:bg-green-300 dark:text-neutral-900" : bg;
+  bg = bg == "warning" ? "bg-yellow-100 dark:text-neutral-900" : bg;
+  bg = bg == "success" ? "bg-green-100 dark:text-neutral-900" : bg;
+  bg = bg == "error" ? "bg-red-100 dark:text-neutral-900" : bg;
+  bg = bg == "primary" ? "bg-blue-100 dark:text-neutral-900" : bg;
   const className = `px-4 py-3 border border-neutral-200 dark:border-neutral-700 ${bg} rounded p-1 text-sm flex items-center text-neutral-900 dark:text-neutral-100 mb-8`
   return (
     <div className={className}>

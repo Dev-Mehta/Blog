@@ -97,7 +97,7 @@ export default function Blog({ params }) {
           __html: JSON.stringify(post.structuredData),
         }}
       ></script>
-      <h1 style={{lineHeight: '1.0', letterSpacing: '-0.04em'}} className="font-extrabold text-5xl tracking-tighter max-w-[650px]">
+      <h1 style={{letterSpacing: '-0.04em', fontWeight: '700'}} className="font-extrabold text-4xl tracking-tighter max-w-[650px]">
         <Balancer>{post.title}</Balancer>
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">

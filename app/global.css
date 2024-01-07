@@ -16,8 +16,6 @@ html {
 
   margin-left: -1em;
   padding-right: 0.5em;
-  width: 80%;
-  max-width: 700px;
   cursor: pointer;
 }
 
@@ -52,7 +50,12 @@ html {
 }
 
 .prose code {
-  @apply text-neutral-800 dark:text-neutral-200 px-1 py-0.5 border border-neutral-100 dark:border-neutral-800 rounded-lg bg-neutral-100 dark:bg-neutral-900;
+  @apply text-neutral-800 dark:text-neutral-100 px-1 py-0.5 border border-neutral-100 dark:border-neutral-800 rounded-md bg-neutral-100 dark:bg-neutral-900;
+  border: 1px solid rgb(72,72,72);
+}
+
+.prose code::before, .prose code::after{
+  content: none;
 }
 
 .prose pre code {
@@ -77,6 +80,8 @@ h4 {
   margin-top: 1.25em !important;
   margin-bottom: 1.25em !important;
 }
+
+
 
 code[class*='language-'],
 pre[class*='language-'] {
