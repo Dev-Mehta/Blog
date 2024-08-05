@@ -61,7 +61,7 @@ export default function BlogPage() {
                 {post.title}
               </p>
               <Suspense fallback={<p className="h-6" />}>
-                <p><span className='text-neutral-600 dark:text-neutral-400'>published on {parsedDate(post.publishedAt)},</span> <Views slug={post.slug} /></p>
+                <p><span className='text-neutral-600 dark:text-neutral-400'>published on {parsedDate(post.publishedAt)},</span></p>
               </Suspense>
             </div>
           </Link>
