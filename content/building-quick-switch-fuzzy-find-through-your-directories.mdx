@@ -1,0 +1,108 @@
+---
+title: Building Quick Switch - Fuzzy finding your directories on Windows
+publishedAt: '2024-10-21T14:46:18Z'
+summary: How I ditched CD and moved to fuzzy finding directories through fzf on windows
+---
+
+As a developer, you will often find yourself jumping between multiple projects, each located in different directories. While I love(read hate) using command prompt, I always felt being slowed down having to `cd` my way through different projects. I wanted a way to quickly switch between directories without having to remember the exact path.
+
+As I came across [ThePrimeAgen's tmux-sessionizer](https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer), I wanted a version of it for Windows. I had seen tmux-sessionizer in action and was amazed by how quickly Prime could go to wherever he wanted to. I wanted that for myself but sadly I was on Windows.
+
+
+So, I decided to build my own version of it. I wanted to be able to quickly switch between directories using a fuzzy finder, I didn't care about multiplexing terminals or anything else. I just wanted to be able to switch between directories quickly.
+
+## Introducing quick-switch
+
+![](https://raw.githubusercontent.com/Dev-Mehta/quick-switch/refs/heads/master/screenshots/fuzzy-find-dirs.png)
+
+Quick-switch is a simple script that allows you to quickly switch between directories using fzf. It's a simple script that I came up with, to get the job done. It's hosted on my [GitHub](https://github.com/Dev-Mehta/quick-switch) and you I have also written `install.bat` and `uninstall.bat` scripts to make it easier to install and uninstall.
+
+## How does it work?
+
+```bash
+@echo off
+setlocal enabledelayedexpansion
+
+rem Check if an argument is provided
+if "%~1"=="" (
+    rem Use dir to list top-level directories in D:\Projects and D:\Practice, then pipe to fzf for selection
+    for /f "delims=" %%i in ('dir /b /ad "D:\Projects" "D:\Practice" ^| fzf') do (
+        set "selected=D:\Projects\%%i"
+        if not exist "!selected!" set "selected=D:\Practice\%%i"
+    )
+) else (
+    set "selected=%~1"
+)
+
+rem Exit if no directory was selected
+if "%selected%"=="" (
+    exit /b 0
+)
+
+rem Get the selected directory name
+for %%i in ("%selected%") do set "selected_name=%%~nxi"
+set "selected_name=%selected_name:.=_%"
+
+rem Check if a Command Prompt window for this session already exists
+wmic path Win32_Process where "CommandLine like '%%cmd.exe%%' and Caption='cmd.exe' and CommandLine like '%%%selected_name%%%'" get ProcessId /value 2>nul | findstr /i /c:"ProcessId=" >nul
+if errorlevel 1 (
+    rem Start a new Command Prompt window with the specified directory and title
+    start "Command Prompt - %selected_name%" cmd.exe /K "cd /d %selected%"
+) else (
+    rem Focus on the existing Command Prompt window with the specified title
+    echo Command Prompt session with the name %selected_name% already exists.
+)
+```
+
+This is all the code that is there in the script. It's a simple script that lists the top-level directories in `D:\Projects` and `D:\Practice` and pipes them to fzf for selection. 
+
+If a directory is selected, it checks if a Command Prompt window with the same name already exists. If it does, it focuses on that window, if it doesn't, it starts a new Command Prompt window with the selected directory.
+
+You'll have to specify your own directories in the script, by default it uses `D:\Projects` and `D:\Practice`, as those are the directories I use.
+
+## Walkthrough the code
+
+The script uses [fzf](https://github.com/junegunn/fzf), it's a great tool for fuzzy finding and you can often find it using it a lot more than you thought you would need to. 
+
+The `dir` command is used for listing directories and files in a directory. However, we are only interested in directories, so we use the `/ad` flag to list only directories. We use the `/b` flag to list only the names of the directories and not the full path.
+
+The output of the `dir` command is then piped to fzf for selection. The selected directory is then stored in the `selected` variable.
+
+If no directory is selected, the script exits. If a directory is selected, the script checks if a Command Prompt window with the same name already exists. If it does, it focuses on that window, if it doesn't, it starts a new Command Prompt window with the selected directory.
+
+The `wmic` command is used to get the ProcessId of the Command Prompt window with the specified title. The `findstr` command is used to check if the Command Prompt window exists or not.
+
+If the Command Prompt window exists, the script echoes a message saying that the Command Prompt session already exists. 
+
+If it doesn't, the script starts a new Command Prompt window with the specified directory and title.
+
+## Usage
+
+Now, if I write all of the above code in a script called `quick-switch.bat` and run it, I can quickly switch between directories using fzf. 
+
+To go faster, I can put `quick-switch.bat` in a directory that is in my PATH, so that I can run it from anywhere. (This is exactly what `install.bat` does)
+
+But, I would still need to write `quick-switch` in my command prompt to run the script. I wanted to be able to run the script by just pressing a key combination. Unfortunately, I couldn't find a way to do that in Command Prompt.
+
+So, I built a workaround, 
+
+```
+cd %USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\
+mkdir _hotkeys
+cd _hotkeys
+explorer .
+```
+
+I created a shortcut to `quick-switch.bat` and named it `quick-switch.lnk`. I then moved the shortcut to the `_hotkeys` directory in the Start Menu of Windows, making sure it persists across reboots. 
+
+You can then assign a key combination to the shortcut by right-clicking on it and going to properties.
+
+![image](https://github.com/user-attachments/assets/379e649e-92f9-4bf7-840d-f43693c460fd)
+
+Now, I can press `Ctrl + Shift + M` to quickly switch between directories using fzf.
+
+## Conclusion
+
+It was a fun little script to build and I'm happy with how it turned out. I can now quickly switch between directories using fzf and I don't have to remember the exact path. 
+
+I hope you found this article helpful and you can use this script to quickly switch between directories on Windows. If you have any code improvements or suggestions, feel free to open an issue or a pull request on the [GitHub repository](https://github,com/Dev-Mehta/quick-switch).
