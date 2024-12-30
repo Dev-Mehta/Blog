@@ -6,6 +6,7 @@ import { GeistMono } from 'geist/font/mono';
 import Sidebar from './components/sidebar';
 import { Analytics } from '@vercel/analytics/react';
 import Head from 'next/head';
+import { GoogleAnalytics } from 'next/third-parties/google'
 import Image from 'next/image';
 export const metadata: Metadata = {
   metadataBase: new URL('https://simplifiedweb.netlify.app'),
@@ -90,6 +91,7 @@ export default function RootLayout({
             <p className='mt-2 prose dark:prose-invert prose-neutral'>Design Template by <a href="https://leerob.io">Lee Robinson</a></p>
           </div>
         </main>
+        <GoogleAnalytics gaId="G-32B2WMKLZV" />
       </body>
     </html>
   );
