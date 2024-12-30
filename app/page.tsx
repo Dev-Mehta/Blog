@@ -81,16 +81,6 @@ export default function Page() {
             </div>
           ))}
       </section>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-32B2WMKLZV" />
-      <Script id="google-analytics">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
- 
-          gtag('config', 'G-32B2WMKLZV');
-        `}
-      </Script>
     </div>
   );
 }
