@@ -103,7 +103,7 @@ Now when, we run this program, we can see the server is listening on port `8080`
 
 We create a server in Python by creating a TCP socket, binding it to **localhost** on **port 8080**, and making it listen for incoming connections. The `bind()` method reserves the port, while `listen()` prepares the server to accept clients. We use `time.sleep()` to keep the server running long enough to test the connection. To verify the port is reserved, we can check using `netstat`. Once the server is active, we can test it by connecting via **Telnet**.
 
-#### Step 2 - Waiting for a connection to happen
+## Step 2 - Waiting for a connection to happen
 
 ```python
 import socket
