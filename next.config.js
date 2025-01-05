@@ -23,11 +23,11 @@ const nextConfig = {
 // https://nextjs.org/docs/advanced-features/security-headers
 const ContentSecurityPolicy = `
     default-src 'self' vercel.live;
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live va.vercel-scripts.com;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' cdn.vercel-insights.com vercel.live va.vercel-scripts.com https://*.googletagmanager.com;
     style-src 'self' 'unsafe-inline';
-    img-src * blob: data:;
+    img-src * blob: data: https://*.google-analytics.com https://*.googletagmanager.com;
     media-src 'none';
-    connect-src *;
+    connect-src * https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;
     font-src 'self' data:;
 `;
 
