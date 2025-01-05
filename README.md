@@ -1,13 +1,7 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%Dev-Mehta%2FBlog)
-
 # simplifiedweb.netlify.app
 
 - **Framework**: [Next.js](https://nextjs.org/)
-- **Database**: [Planetscale](https://planetscale.com)
-- **Authentication**: [NextAuth.js](https://next-auth.js.org)
-- **Deployment**: [Vercel](https://vercel.com)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com)
-- **Analytics**: [Vercel Analytics](https://vercel.com/analytics)
 
 ## Running Locally
 
