@@ -1,0 +1,487 @@
+---
+title: Why most HTTP servers are multithreaded and how to build one from scratch
+publishedAt: '2025-01-05T08:14:51Z'
+summary: Build your own multithreaded HTTP server in python
+---
+
+We all know that **TCP** is the most **reliable protocol** for two machines to communicate over a network. But the real question is: _how does a single web server handle and serve multiple TCP connections simultaneously?_
+
+In this post, we’ll explore this by **building our own server from scratch** using **raw sockets**. Along the way, we’ll dive into **system calls**, **socket programming**, their **limitations**, and finally, **tune our approach** to efficiently handle multiple requests at once.
+
+Let’s jump right into it! 🚀
+
+![Pasted image 20250105113736](https://github.com/user-attachments/assets/0d9e0d86-cc31-44f6-a0ba-11d6e22ef748)
+
+### **What are sockets?**
+
+**Sockets** are a _digital interface_ that wrap communication specifics, enabling machines to exchange data. In this post, the term **socket** primarily refers to the interface provided by Python to the [**Berkeley Sockets API**](https://en.wikipedia.org/wiki/Berkeley_sockets).
+
+There are typically two types of socket connections:
+
+1. **UDP connections**
+2. **TCP connections**
+
+We’ll focus on **TCP** in this post. However, it's worth noting that **UDP** operates similarly, with the main difference lying in the _guarantees_ each protocol offers.
+
+- **TCP** prioritizes **reliability**, ensuring data is delivered in order and without errors.
+- **UDP** is more of a **fire-and-forget** protocol, focusing on speed over reliability.
+
+![Pasted image 20250105115313](https://github.com/user-attachments/assets/0d1b7942-fb81-4136-8d3f-4541b3b2f122)
+
+### **What exactly is a TCP server?**
+
+In simple terms, a **TCP server** is a process running on a machine that **listens to a specific port** and understands **TCP**. For example, you can start an **Apache server**, a **Flask server**, or any other server that listens on a particular port.
+
+Any machine that wants to communicate with the server must **connect to that port** and establish a **TCP connection**.
+
+![Pasted image 20250105115610](https://github.com/user-attachments/assets/1f4079ba-7852-4ef2-9a06-5afe518d2762)
+
+### How a web server works
+
+![Pasted image 20250105131834](https://github.com/user-attachments/assets/5d58c4b3-c70d-4c78-a980-730508dec4dc)
+
+Essentially this is all what a web server or any TCP server for that matter does, it reserves a port for a process, waits for a client to connect, read the request from the client, processes it, and sends back to response to the client, finally closing the connection.
+
+The pseudocode for this can be written as this. 
+
+```
+reserve(8080) <- -reserve a port
+for {
+	conn, addr = s.accept()
+	conn.read()
+	- process
+	conn.write()
+	conn.close()
+}
+```
+
+## Step 1 : Start listening on a port
+
+Let's start with reserving a port for our server. I will be using python to demonstrate this, but you can pick up any programming language.
+
+```python
+import socket
+
+# Import the socket module, which provides the necessary functions to create a socket object.
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# Socket object creation. The first parameter is the address family, 
+# which is AF_INET for IPv4. 
+# The second parameter is the socket type, which is SOCK_STREAM for TCP.
+
+sock.bind(('localhost', 8080))
+# Bind the socket to the address and port.
+
+# Here we have reserved the port 8080 for the server to listen on.
+# We can see that we have successfully reserved the port by running the following command in the command prompt:
+# netstat -an | find "8080"
+# If on unix, use the following command:
+# netstat -an | grep "8080"
+
+sock.listen()
+# Listen for incoming connections.
+# we can connect to the server using the command prompt by running the following command:
+# telnet localhost 8080
+
+import time
+time.sleep(1000)
+# This sleep function is used to keep the server running for a while, 
+# so that we can test the connection using the client.
+```
+
+Once the socket is created, we call `bind()` to associate it with a specific address and port. In this case, we bind the server to **localhost** (`127.0.0.1`) on **port 8080**. This action effectively reserves the port, making it unavailable for other applications. To verify the port is reserved, you can run the `netstat` command in the terminal to see if the port is actively in use.
+
+The next step is to call the `listen()` method, which prepares the server to accept incoming connections. It doesn’t block the program, but it places the server in a listening state, so it’s ready to handle client requests. At this point, the server is actively waiting for clients to connect.
+
+To test the server, we use the `time.sleep(1000)` function, which keeps the server running for a while, allowing us to connect to it. While the server is running, you can test the connection using a tool like **Telnet** by running the command `telnet localhost 8080` from another terminal. If everything is set up correctly, the client will be able to connect to the server.
+
+Now when, we run this program, we can see the server is listening on port `8080` which means that port is reserved successfully for our server to communicate via TCP
+
+![Pasted image 20250105142157](https://github.com/user-attachments/assets/0b6fdc87-2a74-45f0-bb9a-a678b2f94469)
+
+#### TLDR
+
+We create a server in Python by creating a TCP socket, binding it to **localhost** on **port 8080**, and making it listen for incoming connections. The `bind()` method reserves the port, while `listen()` prepares the server to accept clients. We use `time.sleep()` to keep the server running long enough to test the connection. To verify the port is reserved, we can check using `netstat`. Once the server is active, we can test it by connecting via **Telnet**.
+
+#### Step 2 - Waiting for a connection to happen
+
+```python
+import socket
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind(('localhost', 8080))
+
+sock.listen()
+
+sock.accept()
+# Try running this code
+```
+
+Now that our server is listening for incoming connections, the next step is to actually accept a connection from a client. This is where the `sock.accept()` method comes into play.
+
+> If you run the above code you'll notice that the program does not simply exit, but keeps running forever. This is because we have used a **blocking system call** - accept, which will wait for a connection to happen, and until the connection happens, the program's execution will be stuck at that point.
+
+ The `accept()` method is a **blocking system call**. What this means is that when the server executes `sock.accept()`, the program will **pause** and wait until a client establishes a connection. It won’t continue executing until a client reaches out to the server. This behavior is crucial in network programming, as it ensures the server is ready to handle each client’s request one at a time. Once a client connects, the server can proceed with processing the request and responding.
+
+> A **system call** is an interface between user programs and the operating system kernel. When you call a system function like `accept()`, the request is passed to the OS, which handles the lower-level aspects of managing hardware and resources. In the case of `accept()`, the OS performs the necessary steps to establish the connection between the client and the server.
+
+> In **non-blocking** system calls, the program continues execution even if the operation isn’t complete. However, in **blocking** calls like `accept()`, the program waits for the system to return the necessary data or complete the action, which in this case is the establishment of a network connection with a client.
+
+Here’s how the `accept()` method actually fits into our Python code:
+
+```python
+import socket
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind(('localhost', 8080))
+
+sock.listen()
+
+conn, address = sock.accept() 
+# This is a blocking call. It waits until a client connects.
+print(f"Connection established with {address}")`
+```
+
+> Try running the above code, and sending a request to the server with the following command - curl http://localhost:8080. You'll see that the server now accepts a connection from client and prints an ip, port pair where the TCP connection was established. 
+## Step 3 - Reading the request
+
+Now that we have successfully accepted a connection from a client, the next step is to **read** the request from the client. This is a critical part of the process, as the server needs to understand what the client is asking for before responding.
+
+To read the request, we use the `recv()` method of the `conn` object, which is the socket returned by `sock.accept()`. This method reads data from the established connection. Just like `accept()`, the `recv()` method is also a **blocking call**. This means that it will wait until there is data available to read from the client before continuing.
+
+When the server is listening for incoming data, it will pause at the `recv()` call and only proceed once it has received some data from the client. Once data is received, the server can process the request and prepare a response.
+
+Here’s how you would use `recv()` to read the client’s request:
+
+```python
+import socket
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind(('localhost', 8080))
+
+sock.listen()
+
+conn, address = sock.accept()  # Blocking call waiting for a client connection
+print(f"Connection established with {address}")
+
+# Read the request sent by the client
+request = conn.recv(1024)  # This will read up to 1024 bytes of data
+print(f"Received request: ")
+print(request.decode())  # Decode and print the request
+```
+
+In this example, the `recv(1024)` call tells the server to wait and read up to **1024 bytes** of data. The data received is in **bytes**, so we use `.decode()` to convert it into a string for easier readability. The server will now pause and wait for the client to send a request. Once the request is received, it will print the contents of the request.
+
+> You can test this by running the server and sending a request to it using `curl`. For example, running `curl http://localhost:8080` from another terminal will initiate a TCP connection to the server, which will then read the incoming request.
+
+![Pasted image 20250105144423](https://github.com/user-attachments/assets/eaec5c57-7552-4549-a6d0-fb1893667fb9)
+
+## Step 4 -  Sending response to client, and closing the connection
+
+```python
+import socket
+
+def process_request(request):
+    import time
+    time.sleep(10)  # Simulate a long running process
+    
+    # Simple http response
+    response = b"HTTP/1.1 200 OK\r\n"
+    response += b"Content-Type: text/html\r\n"
+    response += b"Content-Length: 11\r\n"
+    response += b"\r\n"
+    response += b"Hello World"
+    return response
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind(('localhost', 8080))
+
+sock.listen()
+
+conn, address = sock.accept()  # Blocking call waiting for a client connection
+print(f"Connection established with {address}")
+
+# Read the request sent by the client
+request = conn.recv(1024)  # This will read up to 1024 bytes of data
+print(f"Received request:")
+print(request.decode())
+
+# Process the request
+response = process_request(request)
+conn.send(response)  # Send the response back to the client
+
+conn.close()
+```
+
+At this point, we simply send Hello World back to the client. And to simulate a long running process we create a function called `process_request` which sleeps for 10 seconds and sends back Hello World to the client. You don't need to worry about the HTTP/1.1.... part it's just a way of sending back text in HTTP protocol so that browsers, and curl understand that this is a webpage for rendering it correctly.
+
+We then send this response using `conn.send()` - which invokes write system call as all we are doing is reading http request message from client via socket, and writing a response back to the client in http response format. This is all a web server does. 
+
+Now when I run my server, and send a request to it using curl, it gives me back Hello World after 10 seconds
+
+![Pasted image 20250105145541](https://github.com/user-attachments/assets/52853b8f-16e2-498a-ab3d-13ea18501255)
+
+and then the **python program stops executing.** To keep our server up and running 24 by 7 we need to wrap it into an infinite loop, remember our pseudocode? 
+
+#### Let's do that
+
+```python
+import socket
+
+def process_request(request):
+    import time
+    time.sleep(10)  # Simulate a long running process
+    
+    # Simple http response
+    response = b"HTTP/1.1 200 OK\r\n"
+    response += b"Content-Type: text/html\r\n"
+    response += b"Content-Length: 11\r\n"
+    response += b"\r\n"
+    response += b"Hello World"
+    print("Processed request")
+    return response
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind(('localhost', 8080))
+
+sock.listen()
+
+while True:
+    conn, address = sock.accept()  # Blocking call waiting for a client connection
+    print(f"Connection established with {address}")
+
+    # Read the request sent by the client
+    request = conn.recv(1024)  # This will read up to 1024 bytes of data
+    print(f"Received request")
+
+    # Process the request
+    response = process_request(request)
+    conn.send(response)  # Send the response back to the client
+
+    conn.close()
+    print(f"Connection closed")
+```
+
+Now if you run this server, it will keep accepting connections from clients and send them responses. You can visit http://localhost:8080 in your browser or send a curl request to it. 
+## But there's a catch here.
+
+We have wrote our own web server from scratch. We have done everything that we needed to do in our pseudocode. 
+
+```
+reserve(8080) <- -reserve a port
+for {
+	conn, addr = s.accept()
+	conn.read()
+	- process
+	conn.write()
+	conn.close()
+}
+```
+
+The server is handling our request successfully, you might say, what's the problem here than? 
+
+Let's do one thing - try hitting multiple requests at once, and see whether you get response in all of them. 
+#### The Problem: Sequential Request Handling
+
+Try sending **multiple requests at once**—for example, three simultaneous requests. What happens?
+
+1. The server accepts the first connection.
+2. It **reads** the first request, **processes** it for 10 seconds, and **writes** the response.
+3. Then, it moves on to the second connection, repeating the same steps: **read**, **process**, and **respond**.
+4. Finally, the third connection is handled in the same sequential manner.
+
+![Pasted image 20250105151014](https://github.com/user-attachments/assets/e778b41c-bb8e-4ba0-99fd-fc0cc543dd15)
+
+To address this problem, we need a solution that can handle **multiple requests concurrently**, ensuring faster responses and efficient server operation.
+
+## Solution to our problem - Parallel Processing
+
+The web server we've built so far is **single-threaded**, meaning it processes one request at a time. The bottleneck lies in the **blocking IO operations**, such as reading and writing data, which take time and prevent the server from accepting new connections promptly.
+
+To solve this, we need **parallel processing**, allowing our server to handle multiple requests simultaneously. This is achieved through **multithreading**. 
+
+Let's redefine our pseudocode
+
+```
+reserve(8080) <- -reserve a port
+for {
+	conn, addr = s.accept() <- our server needs to be here
+	-- Let main thread come back to 'accept' as quickly as possible
+	====> process_request()
+}
+```
+
+Now all we need to is just delegate the task of processing the request to another thread, and our main thread keeps waiting for new connections.
+### Implementation
+
+```python
+import socket
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind(('localhost', 8080))
+
+sock.listen()
+
+def process(conn):
+    print("Processing request")
+    import time
+    time.sleep(10)  # Simulate a long running process
+    
+    # Simple http response
+    response = b"HTTP/1.1 200 OK\r\n"
+    response += b"Content-Type: text/html\r\n"
+    response += b"Content-Length: 11\r\n"
+    response += b"\r\n"
+    response += b"Hello World"
+    conn.send(response)
+    conn.close()
+    print("Connection closed")
+
+while True:
+    conn, address = sock.accept()  # Blocking call waiting for a client connection
+    print(f"Connection established with {address}")
+
+    # Read the request sent by the client
+    request = conn.recv(1024)  # This will read up to 1024 bytes of data
+    print(f"Received request")
+
+    # Use a separate thread to process the process
+    import threading
+    t = threading.Thread(target=process, args=(conn,))
+    t.start()
+```
+
+#### Try It Out!
+
+> Run this server and send multiple requests simultaneously using `curl` or a web browser. You’ll notice that all requests are processed concurrently, and each client receives a response without waiting for others to finish.
+
+![Pasted image 20250105153048](https://github.com/user-attachments/assets/0acf4efb-411f-4ab1-931f-69e32c756302)
+
+### Limitations of a Multithreaded Web Server
+
+While multithreading improves our web server's ability to handle multiple client requests, it is not without its limitations. **Thread Overhead**
+
+- **Problem**: Each thread consumes memory and system resources. For a high number of simultaneous connections, the server can run out of memory or become unresponsive.
+- **Impact**: On systems with limited resources, spawning too many threads can lead to performance degradation or crashes.
+### Improvements to Our Multithreaded Web Server
+
+While the multithreaded server we've implemented works, we can enhance its performance and robustness by addressing some common pitfalls. Here's how:
+#### 1. **Limit the Number of Threads**
+
+- **Why?**  
+    Unrestricted thread creation can lead to resource exhaustion, causing the server to crash under high load.
+- **How?**  
+    Use a thread pool to limit the maximum number of active threads. This prevents the server from overloading the system.
+
+Example: Python’s `concurrent.futures.ThreadPoolExecutor` provides an easy way to manage a fixed number of threads.
+
+
+```python
+from concurrent.futures import ThreadPoolExecutor 
+pool = ThreadPoolExecutor(max_workers=10)  
+# Limit to 10 threads  
+while True:
+	conn, address = sock.accept()
+	pool.submit(process, conn)
+```
+#### 2. **Add a Thread Pool**
+
+- **Why?**  
+    Thread creation is costly, especially when handling a high volume of short-lived requests. A thread pool reuses existing threads, reducing overhead.
+- **How?**  
+    Implement a worker pool that reuses threads to handle requests efficiently, as shown above with `ThreadPoolExecutor`.
+#### 3. **Connection Timeout**
+
+- **Why?**  
+    A client might stay connected indefinitely without sending a complete request, consuming server resources unnecessarily.
+- **How?**  
+    Set a timeout for the server and client sockets. This ensures connections that don’t complete within a given time are closed.
+
+Example:
+
+
+```python
+sock.settimeout(60)  # Close connections after 60 seconds
+```
+#### 4. **TCP Backlog Queue Configuration**
+
+- **Why?**  
+    The backlog queue holds incoming connections that haven’t been accepted yet. If it overflows, new connections are refused.
+- **How?**  
+    Configure the backlog queue size during the `listen()` call to allow more pending connections before the server accepts them.
+
+Example:
+
+```python
+sock.listen(100)
+```
+
+### Implementation: Combined Example
+
+Here’s how these improvements can work together:
+
+```python
+import socket
+from concurrent.futures import ThreadPoolExecutor
+
+# Thread pool with 10 worker threads
+pool = ThreadPoolExecutor(max_workers=10)
+
+def process(conn):
+    try:
+        print("Processing request")
+        conn.settimeout(30)  # Timeout for client connections
+        request = conn.recv(1024)
+        
+        # Simulate processing time
+        import time
+        time.sleep(10)
+        
+        # Simple HTTP response
+        response = b"HTTP/1.1 200 OK\r\n"
+        response += b"Content-Type: text/html\r\n"
+        response += b"Content-Length: 11\r\n"
+        response += b"\r\n"
+        response += b"Hello World"
+        conn.send(response)
+    except socket.timeout:
+        print("Connection timed out")
+    finally:
+        conn.close()
+        print("Connection closed")
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind(('localhost', 8080))
+
+# Configure backlog queue
+sock.listen(100)
+
+print("Server is running...")
+
+while True:
+    conn, address = sock.accept()
+    print(f"Connection established with {address}")
+    pool.submit(process, conn)
+
+```
+
+### Benefits of These Improvements
+
+1. **Thread Limiting** prevents resource exhaustion and ensures the server remains stable.
+2. **Thread Pool** reduces thread creation/destruction overhead, improving performance.
+3. **Connection Timeout** avoids stalled connections, optimizing resource usage.
+4. **Backlog Queue Configuration** ensures better handling of peak traffic by queuing incoming connections efficiently.
+
+With these optimizations, the server becomes more reliable and capable of handling a higher number of simultaneous requests.
+
+## Final thoughts...
+
+Building a web server from scratch is an excellent way to understand the fundamentals of how the web works. Starting with a **single-threaded server**, we observed how blocking I/O operations, such as reading from and writing to sockets, can quickly become a bottleneck. 
+
+The transition to a **multithreaded server** allowed us to improve the server’s ability to handle multiple connections simultaneously by delegating request processing to separate threads.
+
+However, while multithreading addresses the issue of blocking I/O, it introduces challenges like thread management, increased memory usage, and potential performance degradation under heavy load. This is why **thread pools**, **connection timeouts**, and other optimizations become necessary in real-world applications.
+
+In practice, production-grade web servers like **Django (using Gunicorn)**, **Flask**, **Spring Boot**, and **Apache Tomcat** leverage a combination of threading, multiprocessing, and asynchronous I/O to achieve scalability and performance. These frameworks abstract much of the complexity we've explored, but understanding the core principles behind them gives developers the insight needed to optimize and debug their applications effectively.
+
+As technology continues to evolve, alternatives like **asynchronous I/O** (e.g., Python’s `asyncio`) and **event-driven architectures** (e.g., Node.js) are becoming increasingly popular, offering more efficient ways to handle high-concurrency workloads.
